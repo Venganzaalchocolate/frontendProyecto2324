@@ -1,0 +1,90 @@
+:root{
+    --color-lila: #350E43;
+    --color-lila-claro:#CFECE0;
+    --color-naranja: #F2A516;
+    --color-turquesa:#CFECE0;
+}
+
+#root{
+  justify-content: center;
+  display: flex;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Mukta';
+}
+
+@font-face {
+  font-family: 'Mukta';
+  src: url('./styles/fonts/Mukta-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Mukta';
+  src: url('./styles/fonts/Mukta-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(250, 247, 255); opacity: 1; background-image: radial-gradient(rgb(218, 210, 255) 1px, transparent 1px), radial-gradient(rgb(218, 210, 255) 1px, rgb(250, 247, 255) 1px); background-size: 10px 10px;
+  justify-content: center;
+  align-content: center;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 1200px;
+  padding: 0 2rem;
+  margin: 1rem;
+}
+
+button{
+  padding: 0.3rem 1.5rem;
+  border: none;
+  background-color: #350E43;
+  color: #F2A516;
+  font-size: 12pt;
+  font-weight: 600;
+  border-radius: 15px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+button:hover{
+  background-color: #F2A516;
+  color: #350E43;
+}
+
+.links{
+  color: #350E43;
+}
+
+.links:hover{
+  color: #F2A516;
+}
+
+
+.errorSpan{
+  flex: 100%;
+  color:tomato;
+  font-size: 8pt;
+  padding: 0.2rem 0;
+  font-style: oblique;
+}
+
+@media screen and (min-width: 700px) {
+  main {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,83 @@
+.contenedor{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 0.5rem;
+}
+
+.divPaginacion{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  background-color: var(--color-lila);
+  color: var(--color-lila-claro);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  gap: 0.3rem;
+}
+
+.gridCard{
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(
+            200px,
+            1fr
+        )
+    );
+    gap: 1rem;
+    
+}
+
+.cajaCard {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+  }
+
+  .cajaPropiedades{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.5rem;
+  }
+
+  
+  .cajaPrecio{
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-lila);
+    flex: 1;
+    color: var(--color-naranja);
+    border-radius: 10px;
+    align-items: center;
+  }
+
+  .cajaPrecio:hover{
+    background-color: #F2A516;
+    color: #350E43;
+  }
+
+
+  .cajaPrecio>p{
+    color: white;
+    font-weight: bold;
+    padding-right: 0.5rem;
+  }
+
+  .cajaPrecio>svg:hover{
+    color: var(--color-lila-claro);
+  }
+
+  .nombre{
+    text-transform: capitalize;
+  }
+
+  .divPaginacion{
+    height: 2rem;
+  }
+

@@ -1,0 +1,34 @@
+.cajafilters{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-right: 0.5rem;
+    height: fit-content;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+input{
+    max-width: 2rem;
+}
+
+.cajaprecios{
+    display: flex;
+    flex-direction: column;
+}
+
+.cajaprecios>div{
+    display: flex;
+    margin-bottom: 0.6rem;
+
+}
+
+.cajaprecios label{
+    flex:1;
+    font-size: 8pt;
+}
+
+.cajaprecios input{
+    padding: 0 0.5rem;
+}
