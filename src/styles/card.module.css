@@ -3,21 +3,30 @@
   flex-direction: column;
   flex: 1;
   margin-left: 0.5rem;
+  padding-left: 230px;
 }
 
 .divPaginacion{
   display: flex;
   flex: 1;
   justify-content: center;
-  background-color: var(--color-lila);
-  color: var(--color-lila-claro);
+  background-color: var(--color-naranja);
+  color: var(--color-lila);
   border-radius: 0.5rem;
-  margin-bottom: 1rem;
+
   gap: 0.3rem;
+  padding: 0.5rem;
+  height: fit-content;
+}
+
+.divPaginacion>p{
+  font-family: 'Courier';
+  font-weight: bold;
 }
 
 .gridCard{
-    display: grid;
+  margin: 1rem 0;
+      display: grid;
     grid-template-columns: repeat(
         auto-fit,
         minmax(
@@ -58,8 +67,8 @@
   }
 
   .cajaPrecio:hover{
-    background-color: #F2A516;
-    color: #350E43;
+    background-color: var(--color-naranja);
+    color: var(--color-lila);
   }
 
 
@@ -67,6 +76,7 @@
     color: white;
     font-weight: bold;
     padding-right: 0.5rem;
+
   }
 
   .cajaPrecio>svg:hover{
@@ -81,3 +91,6 @@
     height: 2rem;
   }
 
+.pagActual{
+  color: var(--color-fucsia);
+}

@@ -3,39 +3,76 @@
     --color-lila-claro:#e0cfec;
     --color-naranja: #F2A516;
     --color-turquesa:#CFECE0;
+    --color-fucsia: #9822c4;
 }
 
 #root{
-  justify-content: center;
   display: flex;
+  flex-direction: column;
 }
+
 
 *{
   margin: 0;
   padding: 0;
   list-style: none;
   text-decoration: none;
-  font-family: 'Mukta';
+  font-family: 'Roboto';
 }
 
 @font-face {
-  font-family: 'Mukta';
-  src: url('./styles/fonts/Mukta-Bold.ttf') format('truetype');
+  font-family: 'Roboto';
+  src: url('./styles/fonts/RobotoCondensed-Bold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'Mukta';
-  src: url('./styles/fonts/Mukta-Regular.ttf') format('truetype');
+  font-family: 'Roboto';
+  src: url('./styles/fonts/RobotoCondensed-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'Courier';
+  src: url('./styles/fonts/CourierPrime-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Courier';
+  src: url('./styles/fonts/CourierPrime-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: 'Courier';
+  src: url('./styles/fonts/CourierPrime-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Courier';
+  src: url('./styles/fonts/CourierPrime-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
 }
 
 
 body{
   display: flex;
   flex-direction: column;
-  background-color: rgb(250, 247, 255); opacity: 1; background-image: radial-gradient(rgb(218, 210, 255) 1px, transparent 1px), radial-gradient(rgb(218, 210, 255) 1px, rgb(250, 247, 255) 1px); background-size: 10px 10px;
+  background: 
+      linear-gradient(135deg,#0000 20.5%,#ffffff 0 29.5%,#0000 0) 0 7.5px,
+      linear-gradient( 45deg,#0000 8%,#ffffff 0 17%, #0000 0 58%) 15px 0,
+      linear-gradient(135deg,#0000 8%,#ffffff 0 17%, #0000 0 58%,#ffffff 0 67%,#0000 0),        
+      linear-gradient( 45deg,#0000 8%,#ffffff 0 17%, #0000 0 58%,#ffffff 0 67%,#0000 0 83%,#ffffff 0 92%,#0000 0),
+      rgba(225, 209, 237, 0.35);
+background-size: 30px 30px;
+
   justify-content: center;
   align-content: center;
 }
@@ -44,26 +81,26 @@ main{
   display: flex;
   flex-direction: column;
   flex: 1;
-  max-width: 1200px;
   padding: 0 2rem;
   margin: 1rem;
+  margin-top: 6rem;
 }
 
 button{
   padding: 0.3rem 1.5rem;
   border: none;
-  background-color: #350E43;
-  color: #F2A516;
+  background-color: var(--color-lila);
+  border:white solid 1px;
+  color: white;
   font-size: 12pt;
   font-weight: 600;
   border-radius: 15px;
   text-transform: uppercase;
-  width: fit-content;
 }
 
 button:hover{
-  background-color: #F2A516;
-  color: #350E43;
+  background-color: var(--color-naranja);
+  color: var(--color-lila);
 }
 
 .links{

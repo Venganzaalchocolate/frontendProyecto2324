@@ -61,25 +61,25 @@ const Filters=({pasarFiltros, cambiarLimit})=>{
 
     return(
         <div className={styles.cajafilters}>
-            <h2>Filtrar</h2>
-            <h3>Categorias</h3>
+            <h2 className={styles.h2}>Filtrar</h2>
+            <h3 className={styles.h3}>Categorias</h3>
             {categorias!=null ? categorias.map((x)=>{
                 return (
-                    <div>
-                    <input name={x} type='checkbox' value={x} onChange={(e)=>handleChangeFilter(e)}/>
-                    <label for={x}>{x}</label>
+                    <div className={styles.cajaCategorias}>
+                    <input className={styles.input}  name={x} id={x} type='checkbox' value={x} onChange={(e)=>handleChangeFilter(e)}/>
+                    <label className={styles.label} for={x}>{x}</label>
                     </div>
             )
             }) : null}
-            <h3>Precios</h3>
+            <h3 className={styles.h3}>Precios</h3>
             <div className={styles.cajaprecios}>
                 <div>
-                    <label for="rangoMin">Mínimo</label>
-                    <input type="text" id="rangoMin" name="rangoMin" onChange={(e)=>handleChangePrice(e)} value={precio[0]}/>
+                    <label className={styles.label} for="rangoMin">Mínimo: </label>
+                    <input className={styles.input} type="text" id="rangoMin" name="rangoMin" onChange={(e)=>handleChangePrice(e)} value={precio[0]}/>
                 </div>
                 <div>
-                    <label for="rangoMax">Máximo</label>
-                    <input type="text" id="rangoMax" name="rangoMax" onChange={(e)=>handleChangePrice(e)} value={precio[1]}/>
+                    <label className={styles.label} for="rangoMax">Máximo: </label>
+                    <input className={styles.input}  type="text" id="rangoMax" name="rangoMax" onChange={(e)=>handleChangePrice(e)} value={precio[1]}/>
                 </div>
                 
             </div>

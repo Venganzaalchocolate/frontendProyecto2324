@@ -1,0 +1,45 @@
+.header{
+    background-color: var(--color-lila);
+    display: flex;
+    height: 5rem;
+    flex: 1;
+    position: fixed;
+    width: 100%;
+}
+
+.header>img{
+    height: auto;
+    object-fit: contain;
+    max-width: 15rem;
+}
+
+.header svg{
+    width: 2rem;
+    height: 100%;
+}
+
+.header span {
+    color: var(--color-lila);
+    font-weight: bold;
+    position: absolute;
+    top: 30px;
+    left: 14px;
+    font-size: 8pt;
+}
+
+.contenedorLogo{
+    flex: 1;
+    display: flex;
+    padding: 1rem 0;
+    padding-left: 2rem;
+}
+
+.contenedorIconos{
+    display: flex;
+    color: var(--color-naranja);
+    gap: 0.5rem;
+    position: relative;
+    padding: 1rem 0;
+    padding-right: 2rem;
+}
+
