@@ -9,6 +9,7 @@
 #root{
   display: flex;
   flex-direction: column;
+  flex: 1 100%;
 }
 
 
@@ -71,19 +72,19 @@ body{
       linear-gradient(135deg,#0000 8%,#ffffff 0 17%, #0000 0 58%,#ffffff 0 67%,#0000 0),        
       linear-gradient( 45deg,#0000 8%,#ffffff 0 17%, #0000 0 58%,#ffffff 0 67%,#0000 0 83%,#ffffff 0 92%,#0000 0),
       rgba(225, 209, 237, 0.35);
-background-size: 30px 30px;
-
+  background-size: 30px 30px;
   justify-content: center;
   align-content: center;
+  min-height: 100vh;
 }
 
 main{
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1 100%;
   padding: 0 2rem;
-  margin: 1rem;
-  margin-top: 6rem;
+  padding-top: 7.5rem;
+  justify-content: center;
 }
 
 button{
@@ -92,7 +93,7 @@ button{
   background-color: var(--color-lila);
   border:white solid 1px;
   color: white;
-  font-size: 12pt;
+  font-size: 18pt;
   font-weight: 600;
   border-radius: 15px;
   text-transform: uppercase;
@@ -113,11 +114,25 @@ button:hover{
 
 
 .errorSpan{
-  flex: 100%;
   color:tomato;
-  font-size: 8pt;
-  padding: 0.2rem 0;
+  font-size: 10pt;
+  font-family: 'Courier';
   font-style: oblique;
+  padding-left: 0.5rem;
+  font-weight: bold;
+}
+
+.fuenteCourier{
+  font-family: 'Courier';
+  font-weight: normal;
+}
+
+.enlace{
+  color: var(--color-lila);
+}
+
+.enlace:hover{
+  color: var(--color-naranja);
 }
 
 @media screen and (min-width: 700px) {

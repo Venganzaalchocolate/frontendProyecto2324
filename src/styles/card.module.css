@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-left: 0.5rem;
   padding-left: 230px;
 }
 
@@ -13,10 +12,10 @@
   background-color: var(--color-naranja);
   color: var(--color-lila);
   border-radius: 0.5rem;
-
   gap: 0.3rem;
   padding: 0.5rem;
   height: fit-content;
+  max-height: 1rem;
 }
 
 .divPaginacion>p{
@@ -43,7 +42,7 @@
     flex-direction: column;
     flex: 1;
     text-align: center;
-    padding: 0.5rem;
+    padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     background-color: white;
@@ -52,7 +51,7 @@
   .cajaPropiedades{
     display: flex;
     flex-direction: column;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem;
   }
 
   
@@ -62,29 +61,42 @@
     background-color: var(--color-lila);
     flex: 1;
     color: var(--color-naranja);
-    border-radius: 10px;
+    border-radius: 15px;
     align-items: center;
+    padding: 0.3rem;
+
   }
 
   .cajaPrecio:hover{
     background-color: var(--color-naranja);
+  }
+
+  .cajaPrecio:hover p{
     color: var(--color-lila);
   }
 
+  .cajaPrecio:hover svg{
+    color: var(--color-lila);
+  }
 
   .cajaPrecio>p{
     color: white;
     font-weight: bold;
     padding-right: 0.5rem;
-
+    font-family: 'Courier';
+    font-size: 14pt;
   }
 
-  .cajaPrecio>svg:hover{
-    color: var(--color-lila-claro);
+
+  .cajaPrecio svg{
+    width: 1.5rem;
+    height: 100%;
   }
 
   .nombre{
-    text-transform: capitalize;
+    text-transform: uppercase;
+    color: var(--color-lila);
+    padding-bottom: 1rem;
   }
 
   .divPaginacion{

@@ -1,0 +1,56 @@
+
+
+.cajaForm{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+    border-top: 70px solid var(--color-lila);
+    min-width: 250px;
+    align-self: center;
+    justify-self: center;
+    padding: 2rem;
+    max-width: 350px;
+}
+
+.cajaForm>h2{
+    margin-top: -90px;
+    text-align: center;
+    color: var(--color-naranja);
+    font-size: 30pt;
+    margin-bottom: 20px;
+}
+
+.cajaForm>p{
+    padding: 1rem 0;
+    text-align: center;
+    color: var(--color-lila);
+    font-weight: bold;
+}
+
+
+
+.cajaInputs{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.cajaInputs>label{
+    padding: 0.5rem 0;
+    text-transform: uppercase;
+    color: var(--color-lila);
+    font-weight: bold;    
+}
+
+.cajaInputs>input{
+    border: none;
+    border: solid 1px var(--color-naranja);
+    border-radius: 0 15px 15px 15px;
+    padding: 0.8rem;
+}
+
+.cajaInputs> span{
+    padding: 0.5rem 0;
+}
+

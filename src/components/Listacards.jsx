@@ -22,13 +22,13 @@ const Listcards=({games, cambiarLimit, cantidad, numeroCardXPagina})=>{
     }
     const juegos=games;
     return <div className={styles.contenedor}>
-        {numPag>0 && <div className={styles.divPaginacion}>
+        {numPag>0 && <div key='paginacionSuperior' className={styles.divPaginacion}>
             {paginacion()}
         </div>}
         <div className={styles.gridCard}>
-            {juegos.map((juego)=><Card juego={juego}/>)}
+            {juegos.map((juego)=><Card  juego={juego}/>)}
         </div> 
-        {numPag>0 && <div className={styles.divPaginacion}>
+        {numPag>0 && <div key='paginacionInferior' className={styles.divPaginacion}>
             {paginacion()}
         </div>}
     </div>
