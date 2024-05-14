@@ -42,19 +42,21 @@ export const gamesWithFilter=async (datos, limite)=>{
     return data.data
   }
 
-// export const loggear = async (email, pass) => {
-//     const data = {
-//         email,
-//         pass,
-//     };
-//     const url=`${import.meta.env.VITE_API}/login`
-//     const response = await axios.post(
-//         url,
-//         data,
-//     ).catch((error)=>{
-//         return error.response.data
-//     });
-    
-//     return (!!response.error==true)?response:response.data.data
+export const loggear = async (email, pass) => {
+    const datos = {
+        email,
+        pass,
+    };
+    const url=`${import.meta.env.VITE_API}/login`
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    });
 
-// }
+    const data = await response.json();
+    return data.data
+
+}

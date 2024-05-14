@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styles from '../styles/form.module.css';
 import { validEmail, validPassword } from '../lib/valid';
 import { textErrors } from '../lib/textErrors';
+import { loggear } from '../lib/data';
 
 const Login=()=>{
     const [email, setEmail]=useState(null)
@@ -37,7 +38,13 @@ const Login=()=>{
                 }
                 setPass(e.target.value)
             }
+    }
 
+    const loguear=async ()=>{
+        if(errores.email==null && errores.password==null){
+            const login= await loggear(email,pass);
+            console.log(login)
+        }
     }
     return (
         <div className={styles.cajaForm}>
@@ -53,7 +60,7 @@ const Login=()=>{
                 <span className='errorSpan'>{errores.password}</span>
             </div>
             <p className='fuenteCourier enlace'>¿Has olvidado tu contraseña?</p>
-            <button>Entrar</button>
+            <button onClick={()=>loguear()}>Entrar</button>
             <p className='enlace'>CREAR CUENTA</p>
         </div>    
     )

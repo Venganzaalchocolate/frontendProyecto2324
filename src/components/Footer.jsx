@@ -1,11 +1,9 @@
 import { useCart } from "../hooks/useCart"
-
+import styles from '../styles/footer.module.css';
 
 
 export const Footer=()=>{
-    const {products}=useCart()
-    console.log(products)
     return(
-        <div>hola</div>
+        <div className={styles.footer}>hola</div>
     )
 }
