@@ -55,8 +55,24 @@ export const loggear = async (email, pass) => {
         },
         body: JSON.stringify(datos)
     });
-
+    if(response.status==403) return {error:true,message:'Usuario o contraseña incorrecta'}
     const data = await response.json();
     return data.data
+}
 
+export const tokenUser = async (token) => {
+    const datos = {
+        token,
+    };
+    const url=`${import.meta.env.VITE_API}/validtoken`
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    });
+    if(response.status==403) return {error:true,message:'Token no valido'}
+    const data = await response.json();
+    return data.data
 }

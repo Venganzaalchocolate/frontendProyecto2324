@@ -1,24 +1,17 @@
 import { useContext, useState } from 'react'
 import { FaShoppingCart, FaRegUser } from 'react-icons/fa';
-import { GiMeeple } from "react-icons/gi";
+import { GiMeeple, GiMeepleKing  } from "react-icons/gi";
 import styles from '../styles/header.module.css';
-import { LoggedContext } from '../context/LoggedProvider';
 import Carrito from './Carrito';
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { useLogin } from '../hooks/useLogin';
+import MenuUser from './MenuUser';
 
 
 
 const Header = () => {
-    const { logged, setLogged } = useContext(LoggedContext)
-
-
-    const login = () => {
-        setLogged({
-            estaLogueado: !logged.estaLogueado,
-            user: logged.user
-        })
-    }
+    const { logged } = useLogin()
 
     return (
         <header className={styles.header}>
@@ -39,11 +32,11 @@ const Header = () => {
             <div className={styles.contenedorIconos}>
                 <Carrito></Carrito>
                 {logged.estaLogueado &&
-                    <GiMeeple onClick={() => login()} />
+                        <MenuUser/>   
                 }
                 {!logged.estaLogueado &&
                     <Link to='/login'>
-                        <FaRegUser onClick={() => login()} />
+                        <GiMeeple/>
                     </Link>
                 }
             </div>

@@ -4,8 +4,14 @@ import styles from '../styles/form.module.css';
 import { validEmail, validPassword } from '../lib/valid';
 import { textErrors } from '../lib/textErrors';
 import { loggear } from '../lib/data';
+import { useLogin } from '../hooks/useLogin';
+import { guardarToken } from '../lib/serviceToken';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Login=()=>{
+    const {logged, cambiarLogged}=useLogin()
     const [email, setEmail]=useState(null)
     const [pass,setPass]=useState(null)
     const [errores,setError]=useState({
@@ -13,10 +19,13 @@ const Login=()=>{
         password:null
     })
 
+    const navigate=useNavigate()
+
     const handleChange=(e)=>{
+        let auxErrores={...errores}
+        auxErrores['mensajeError']=null
         if(e.target.name=='email') 
-        {
-            let auxErrores={...errores}
+        {   
             if(!validEmail(e.target.value)){            
                 auxErrores['email']=textErrors('email')
                 setError(auxErrores)
@@ -24,11 +33,11 @@ const Login=()=>{
                 auxErrores['email']=null
                 setError(auxErrores)
             }
+
             setEmail(e.target.value)
         }
         if(e.target.name=='pass') 
             {
-                let auxErrores={...errores}
                 if(!validPassword(e.target.value)){            
                     auxErrores['password']=textErrors('password')
                     setError(auxErrores)
@@ -42,8 +51,16 @@ const Login=()=>{
 
     const loguear=async ()=>{
         if(errores.email==null && errores.password==null){
-            const login= await loggear(email,pass);
-            console.log(login)
+            const login= await loggear(email,pass).catch((error)=>console.log(error));
+            if(login.error){
+                let auxErrores={...errores}
+                auxErrores['mensajeError']=login.message;
+                setError(auxErrores)
+            } else {
+                cambiarLogged(login.usuario)
+                guardarToken(login.token)
+                navigate('/')
+            }
         }
     }
     return (
@@ -62,6 +79,7 @@ const Login=()=>{
             <p className='fuenteCourier enlace'>¿Has olvidado tu contraseña?</p>
             <button onClick={()=>loguear()}>Entrar</button>
             <p className='enlace'>CREAR CUENTA</p>
+            <span className='errorSpan'>{errores.mensajeError}</span>
         </div>    
     )
 }
