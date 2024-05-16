@@ -3,6 +3,7 @@ import styles from '../styles/header.module.css';
 import { useState } from 'react';
 import { useLogin } from '../hooks/useLogin';
 import { Link } from "react-router-dom";
+import { MdClose } from "react-icons/md";
 
 const MenuUser=()=>{
     const [visible, setVisible]=useState(false)
@@ -17,6 +18,7 @@ const MenuUser=()=>{
         <GiMeepleKing onClick={()=>visibleMenu()}></GiMeepleKing>
         {visible && 
             <div className={styles.menuUsuario}>
+                <MdClose onClick={()=>visibleMenu()}></MdClose>
                 <ul>
                     <Link to='/usuario'>
                         <li>TU CUENTA</li>

@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { borrarToken, obtenerToken } from "../lib/serviceToken.js";
 
 export const LoggedContext = createContext();
 
@@ -19,6 +20,7 @@ export function LoggedProvider({ children }) {
         const auxLogged= {}
         auxLogged['estaLogueado']=false
         auxLogged['user']={}
+        borrarToken()
         setLogged(auxLogged)
     }
 

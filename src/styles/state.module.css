@@ -1,0 +1,24 @@
+.forma{
+    padding: 0.3rem 1.5rem;
+    border: none;
+    background-color: var(--color-lila);
+    border:white solid 1px;
+    color: white;
+    font-size: 18pt;
+    font-weight: 600;
+    border-radius: 15px;
+    text-transform: uppercase;
+}
+
+.pagado {
+    background-color: var(--color-estado-pagado);
+}
+.preparando {
+    background-color: var(--color-estado-preparando);
+}
+.enviado {
+    background-color: var(--color-estado-enviado);
+}
+.entregado{
+    background-color: var(--color-estado-entregado);
+}

@@ -12,5 +12,5 @@ export const obtenerToken = () => {
 }
 
 export const borrarToken=()=>{
-    window.localStorage.clear
+    window.localStorage.clear()
 }

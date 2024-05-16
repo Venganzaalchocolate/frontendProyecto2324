@@ -7,10 +7,11 @@ import Login from './components/Login.jsx'
 import { CartProvider } from './context/CartProvider.jsx'
 import { Footer } from './components/Footer.jsx'
 import { BrowserRouter, Route, Link, Router, Routes } from 'react-router-dom';
-import { borrarToken, obtenerToken } from './lib/serviceToken.js'
+import { obtenerToken } from './lib/serviceToken.js'
 import { useLogin } from './hooks/useLogin.jsx'
 import { Cuentausuario } from './components/Cuentausuario.jsx'
-import { Historialpedidos } from './components/Historialpedidos.jsx'
+import { Pedidos } from './components/Pedidos.jsx'
+import { Tramitarpedido } from './components/TramitarPedido.jsx'
 
 
 
@@ -20,7 +21,7 @@ function App() {
   const [filter, setFilter]=useState({})
   const [games, setGames]=useState(null)
   const [componente,setComponente]=useState('Home')
-  const {cambiarLogged, logged}=useLogin()
+  const {cambiarLogged, logged, logout}=useLogin()
   
 
   useEffect(()=>{
@@ -33,10 +34,10 @@ function App() {
         if(!user.error){
           cambiarLogged(user)
         } else {
-          borrarToken()
+          logout()
         }
       } else {
-        borrarToken()
+        logout()
       }
       setCantidad(cantidad)
       setGames(respuesta); // Actualiza el estado con los datos recibidos
@@ -71,8 +72,9 @@ function App() {
           <Routes>
             <Route path="/" element={home()} />
             <Route path="/usuario" element={<Cuentausuario/>}/>
-            <Route path='/historialpedidos' element={<Historialpedidos/>} />
+            <Route path='/historialpedidos' element={<Pedidos/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path='/tramitarpedido' element={<Tramitarpedido/>}/>
           </Routes>
         </main>
         <Footer></Footer>

@@ -24,7 +24,7 @@
     color: var(--color-lila);
     font-weight: bold;
     position: absolute;
-    top: 30px;
+    top: 33px;
     left: 14px;
     font-size: 8pt;
 }
@@ -45,6 +45,11 @@
     position: relative;
 }
 
+.contenedorIconos>a>svg{
+    color: var(--color-naranja);
+}
+
+
 .listaCarrito, .menuUsuario{
     display: flex;
     flex-direction: column;
@@ -56,12 +61,17 @@
     padding: 1rem;
     gap: 0.5rem;
 }
+.listaCarrito>:nth-child(1){
+    align-self: end;
+}
 
-.listaCarrito>:nth-child(1)>li{
+.listaCarrito>:nth-child(2)>li{
     color: var(--color-naranja);
     font-weight: bold;
     font-family: 'Courier';
 }
+
+
 
 .listaCarrito>ul{
     flex: 1 100%;
@@ -121,6 +131,10 @@
 .contenedorEnvioSociales>div>svg{
     width: 1.3rem;
     margin-left: 0.5rem;
+}
+
+.menuUsuario>:nth-child(1){
+    align-self: end;
 }
 
 .menuUsuario>ul{

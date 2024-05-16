@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react'
-import { FaShoppingCart, FaRegUser } from 'react-icons/fa';
+
 import { GiMeeple, GiMeepleKing  } from "react-icons/gi";
 import styles from '../styles/header.module.css';
 import Carrito from './Carrito';
@@ -32,7 +31,7 @@ const Header = () => {
             <div className={styles.contenedorIconos}>
                 <Carrito></Carrito>
                 {logged.estaLogueado &&
-                        <MenuUser/>   
+                <MenuUser/>   
                 }
                 {!logged.estaLogueado &&
                     <Link to='/login'>

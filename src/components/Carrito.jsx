@@ -2,6 +2,8 @@ import { FaShoppingCart, FaTrashAlt } from 'react-icons/fa';
 import styles from '../styles/header.module.css';
 import { useState } from 'react';
 import { useCart } from '../hooks/useCart';
+import { MdClose } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 const Carrito=()=>{
     const [visible, setVisible]=useState(false)
@@ -11,6 +13,8 @@ const Carrito=()=>{
         setVisible(!visible)
     }
 
+    
+
     return (
         <>
         <span onClick={()=>visibleCarrito()}>{
@@ -19,6 +23,7 @@ const Carrito=()=>{
         <FaShoppingCart onClick={()=>visibleCarrito()}></FaShoppingCart>
         {visible && 
             <div className={styles.listaCarrito}>
+            <MdClose onClick={()=>visibleCarrito()}></MdClose>
             <ul>
                 <li>Producto</li>
                 <li>Qt</li>
@@ -37,7 +42,10 @@ const Carrito=()=>{
             }
             <p>Total: {!!products && products.reduce((acc, item) => acc + (item.quantity*item.price), 0).toFixed(2)} €</p>
             {(!!products && products.reduce((acc, item) => acc + (item.quantity*item.price), 0).toFixed(2)>40) && <p>ENVIO GRATIS</p>}
+            <Link to='/tramitarpedido' onClick={()=>visibleCarrito()}>
             <button>TRAMITAR PEDIDO</button>
+            </Link>
+            
             </div>
         }
         </>
