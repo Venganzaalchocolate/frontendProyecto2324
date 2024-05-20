@@ -104,5 +104,8 @@
   }
 
 .pagActual{
-  color: var(--color-fucsia);
+  background-color: var(--color-fucsia);
+  padding: 0 5px;
+  border-radius: 5px;
+  color: white;
 }

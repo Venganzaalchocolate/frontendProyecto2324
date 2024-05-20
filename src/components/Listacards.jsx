@@ -12,10 +12,13 @@ const Listcards=({games, cambiarLimit, cantidad, numeroCardXPagina})=>{
 
     const paginacion=()=>{
         const pag=[]
+        const pagActual=Math.ceil(numeroCardXPagina[0]/numeroCardXPagina[1]);
         pag.push(<p onClick={()=>cambiarPagina(0)}>&lt;&lt;</p>)
-        for (let index = 1; index <= numPag; index++) {
-            if(Math.ceil(numeroCardXPagina[0]/numeroCardXPagina[1])==index-1) pag.push(<p className={styles.pagActual} onClick={()=>cambiarPagina(index-1)}>{index}</p>)
-            else pag.push(<p onClick={()=>cambiarPagina(index-1)}>{index}</p>)
+        for (let index = pagActual; index <= pagActual+2; index++) {
+            if(pagActual==index-1) pag.push(<p className={styles.pagActual} onClick={()=>cambiarPagina(index-1)}>{index}</p>)
+            else {
+                if(index>0 && index<=numPag) pag.push(<p onClick={()=>cambiarPagina(index-1)}>|{index}|</p>)  
+            } 
         }
         pag.push(<p onClick={()=>cambiarPagina(numPag-1)}>&gt;&gt;</p>)
         return pag

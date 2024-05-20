@@ -6,6 +6,8 @@ export const textErrors=(tipo)=>{
           return "El email no está bien escrito ej: email@gmail.com";
         case "password":
             return "8 carácteres, una minúscula, una mayúscula, un número y un carácter especial";
+        case "vacio":
+            return "No puedes dejar el campo vacio";
         default:
           return null;
       }

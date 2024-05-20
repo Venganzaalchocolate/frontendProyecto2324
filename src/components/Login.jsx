@@ -51,16 +51,24 @@ const Login=()=>{
 
     const loguear=async ()=>{
         if(errores.email==null && errores.password==null){
-            const login= await loggear(email,pass).catch((error)=>console.log(error));
-            if(login.error){
+            if(email==null || pass==null) {
                 let auxErrores={...errores}
-                auxErrores['mensajeError']=login.message;
+                if(email==null) auxErrores['email']=textErrors('vacio')
+                if(pass==null) auxErrores['password']=textErrors('vacio')
                 setError(auxErrores)
-            } else {
-                cambiarLogged(login.usuario)
-                guardarToken(login.token)
-                navigate('/')
+            } else{
+                const login= await loggear(email,pass).catch((error)=>console.log(error));
+                if(login.error){
+                    let auxErrores={...errores}
+                    auxErrores['mensajeError']=login.message;
+                    setError(auxErrores)
+                } else {
+                    cambiarLogged(login.usuario)
+                    guardarToken(login.token)
+                    navigate('/')
+                }
             }
+            
         }
     }
     return (

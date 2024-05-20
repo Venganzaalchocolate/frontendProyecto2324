@@ -13,13 +13,11 @@ const Carrito=()=>{
         setVisible(!visible)
     }
 
-    
-
     return (
         <>
         <span onClick={()=>visibleCarrito()}>{
             !!products && products.reduce((acc, item) => acc + item.quantity, 0)
-        }</span>
+        }</span> 
         <FaShoppingCart onClick={()=>visibleCarrito()}></FaShoppingCart>
         {visible && 
             <div className={styles.listaCarrito}>
