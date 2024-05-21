@@ -12,6 +12,7 @@ import { useLogin } from './hooks/useLogin.jsx'
 import { Cuentausuario } from './components/Cuentausuario.jsx'
 import { Pedidos } from './components/Pedidos.jsx'
 import { Tramitarpedido } from './components/TramitarPedido.jsx'
+import { Inicio } from './components/Inicio.jsx'
 
 
 
@@ -53,16 +54,6 @@ function App() {
     setLimit(num)
   }
 
-  const home=()=>{
-    return <>
-    <Filters cambiarLimit={(x)=>addLimit(x)} pasarFiltros={(x)=>addFilter(x)}></Filters>
-    {games!=null 
-        ? (cantidad==0) 
-          ?<p>No tenemos juegos con esos filtros</p>
-          :<Listcards games={games} cambiarLimit={(x)=>addLimit(x)} cantidad={cantidad} numeroCardXPagina={limit} />
-        :<p>cargando....</p>}
-    </>
-  }
 
   return (
     <CartProvider>
@@ -70,7 +61,7 @@ function App() {
         <Header></Header>
         <main>
           <Routes>
-            <Route path="/" element={home()} />
+            <Route path="/"  element={<Inicio limit={limit} cantidad={cantidad} games={games} addLimit={(x)=>addLimit(x)} addFilter={(x)=>addFilter(x)}/>} />
             <Route path="/usuario" element={<Cuentausuario/>}/>
             <Route path='/historialpedidos' element={<Pedidos/>} />
             <Route path="/login" element={<Login/>} />

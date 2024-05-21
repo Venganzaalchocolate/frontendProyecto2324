@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import { FaShoppingCart } from 'react-icons/fa';
 import styles from '../styles/filters.module.css';
 import { gamesCategory } from '../lib/data';
+import { IoClose } from "react-icons/io5";
 
 const Filters=({pasarFiltros, cambiarLimit})=>{
     const [inputsCheket, setInputsChecked]=useState({})
     const [categorias, setCategorias]=useState(null)
     const [precio, setPrecio]=useState([0,0])
+    const [visible, setVisible]=useState(false)
 
     const handleChangeFilter=(e)=>{
         const category=e.target.value;
@@ -27,7 +29,6 @@ const Filters=({pasarFiltros, cambiarLimit})=>{
         }
     }
 
-
     const addFilter=()=>{
         const arrayFiltros=[]
         const paresClaveValor = Object.entries(inputsCheket);
@@ -43,6 +44,9 @@ const Filters=({pasarFiltros, cambiarLimit})=>{
         pasarFiltros(filtroAux)
     }
 
+    const filtrosVisibles=()=>{
+        setVisible(!visible)
+    }
     
 
     useEffect(()=>{
@@ -59,8 +63,11 @@ const Filters=({pasarFiltros, cambiarLimit})=>{
         cargarDatos();
       }, []);
 
+      
     return(
-        <div className={styles.cajafilters}>
+        <>
+        {!!visible && <div className={styles.cajafilters}>
+            <div className={styles.contenedorX}><IoClose onClick={()=>filtrosVisibles()}/></div>
             <h2 className={styles.h2}>Filtrar</h2>
             <h3 className={styles.h3}>Categorias</h3>
             {categorias!=null ? categorias.map((x)=>{
@@ -83,9 +90,12 @@ const Filters=({pasarFiltros, cambiarLimit})=>{
                 </div>
                 
             </div>
-           
             <button onClick={()=>addFilter()}>Filtrar</button>
-        </div>
+        </div>}
+        {!visible && <button id={styles.botonFiltroMobile} onClick={()=>filtrosVisibles()}>FILTRAR</button>}
+        
+        </>
+        
     )
 }
 

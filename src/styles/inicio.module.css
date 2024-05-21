@@ -1,0 +1,14 @@
+.cajainicio{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+@media (min-width: 800px) {
+    .cajainicio{
+        flex-direction: row;
+        flex: 1;
+    }
+    
+}

@@ -98,6 +98,7 @@ button{
   padding: 0.3rem 1.5rem;
   border: none;
   background-color: var(--color-lila);
+  border: none;
   border:white solid 1px;
   color: white;
   font-size: 18pt;
