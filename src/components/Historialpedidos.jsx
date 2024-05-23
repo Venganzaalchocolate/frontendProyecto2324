@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLogin } from "../hooks/useLogin"
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { obtenerToken } from "../lib/serviceToken";
 import { historyOrders } from "../lib/data";
 import styles from '../styles/form.module.css';
@@ -27,9 +27,11 @@ export const Historialpedidos = ({ver}) => {
     ver(pedido)
   }
 
+  console.log(orders)
   if (orders != null) return (
     <div className={styles.cajaForm}>
       <h2>HISTORIAL PEDIDOS</h2>
+      {orders.length == 0 && <p>TODAVÍA NO HAS HECHO NINGÚN PEDIDO</p>}
       {orders.map((order) => {
         return (
             <div onClick={()=>pedido(order)} className={stylesDos.listaPedidos}>

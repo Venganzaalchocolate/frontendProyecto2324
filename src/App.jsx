@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import {gamesWithFilter, gamesCantidad, tokenUser} from './lib/data.js'
-import Listcards from './components/Listacards.jsx'
-import Filters from './components/Filters.jsx'
 import Header from './components/Header.jsx'
 import Login from './components/Login.jsx'
 import { CartProvider } from './context/CartProvider.jsx'
@@ -13,6 +11,7 @@ import { Cuentausuario } from './components/Cuentausuario.jsx'
 import { Pedidos } from './components/Pedidos.jsx'
 import { Tramitarpedido } from './components/TramitarPedido.jsx'
 import { Inicio } from './components/Inicio.jsx'
+import Crearcuentausuario from './components/Creacuenta.jsx'
 
 
 
@@ -24,7 +23,6 @@ function App() {
   const [componente,setComponente]=useState('Home')
   const {cambiarLogged, logged, logout}=useLogin()
   
-
   useEffect(()=>{
     const cargarDatos = async () => {
       const respuesta = await gamesWithFilter(filter, limit)
@@ -65,6 +63,7 @@ function App() {
             <Route path="/usuario" element={<Cuentausuario/>}/>
             <Route path='/historialpedidos' element={<Pedidos/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/crearcuenta" element={<Crearcuentausuario/>} />
             <Route path='/tramitarpedido' element={<Tramitarpedido/>}/>
           </Routes>
         </main>

@@ -6,11 +6,14 @@ import styles from '../styles/form.module.css';
 import stylesDos from '../styles/pedido.module.css';
 import { FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { crearPedido } from '../lib/data';
+import { obtenerToken } from '../lib/serviceToken';
+import { calcularPrecio } from '../lib/utils';
 
 export const Tramitarpedido = () => {
     const {products, removeProduct, reduceProduct, addCart} = useCart()
     const {logged}=useLogin()
-    const [direccion, setDireccion]=useState(logged.user.direction)
+    const [direccion, setDireccion]=useState('hhhhh')
     const [cambiarDireccion, setCambiarDireccion]=useState(false)
     const navigate = useNavigate()
 
@@ -30,6 +33,12 @@ export const Tramitarpedido = () => {
     }
     
     let precioTotal=0;
+
+    const crearOrder=()=>{
+        const token=obtenerToken();
+        crearPedido(logged.user._id, products, direccion, token, precioTotal)
+    }
+
     return (
         <div className={styles.cajaForm}>
             <h2 className={stylesDos.titulo}>CARRITO</h2>
@@ -70,7 +79,7 @@ export const Tramitarpedido = () => {
                 <input id='pago' name='pago' type='radio' checked/>
                 <label htmlFor="pago">Tranferencia</label> 
             </div>
-            <button className={stylesDos.button}>TRAMITAR PEDIDO</button>
+            <button className={stylesDos.button} onClick={()=>crearOrder()}>TRAMITAR PEDIDO</button>
         </div>
     )
 }

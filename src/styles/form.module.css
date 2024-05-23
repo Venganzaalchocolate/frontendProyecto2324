@@ -51,10 +51,20 @@
     padding: 0.8rem;
 }
 
+.cajaInputs>input:disabled{
+    border: none;
+    color: var(--color-lila);
+}
+
 .cajaInputs> span{
     padding: 0.5rem 0;
 }
 
+.enlace{
+    font-weight: bold;
+    text-align: center;
+    padding-top: 0.8rem;
+}
 
 @media screen and (min-width: 700px) {
     .cajaForm{

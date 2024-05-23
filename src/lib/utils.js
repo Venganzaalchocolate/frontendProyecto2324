@@ -28,3 +28,11 @@ export const formatDateTime = (isoDateTime) => {
     return `${formattedDay}-${formattedMonth}-${year} ${formattedHours}:${formattedMinutes}`;
 
 }
+
+export const calcularPrecio=(listajuegos)=>{
+    let total=0;
+    for (const juego of listajuegos) {
+        total+=(juego.quantity*juego.price)   
+    }
+    return total
+}

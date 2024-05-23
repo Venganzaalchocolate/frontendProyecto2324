@@ -2,42 +2,21 @@ import { useState } from 'react';
 import styles from '../styles/form.module.css';
 import { validEmail, validPassword, validText, validPasswordRepeat } from '../lib/valid';
 import { textErrors } from '../lib/textErrors';
-import { modificarusuario } from '../lib/data';
+import { loggear, crearusuario } from '../lib/data';
 import { useLogin } from '../hooks/useLogin';
-import { guardarToken, obtenerToken } from '../lib/serviceToken';
+import { guardarToken } from '../lib/serviceToken';
 import { useNavigate, Link } from 'react-router-dom';
-import { useEffect} from 'react';
 
-export const Cuentausuario=()=>{
+
+export const Crearcuentausuario = () => {
     const { logged, cambiarLogged } = useLogin()
-    const [noEditar, setEditar]=useState(true)
     const [datos,setDatos]=useState({
         email: null,
-        password: '',
+        password: null,
         nombre: null,
         direccion: null,
-        passwordR: ''
+        passwordR: null
     })
-
-    const navigate = useNavigate()
-    useEffect(()=>{
-        if(logged.estaLogueado){
-            const auxDatos={
-                email: logged.user.email,
-                password: '',
-                nombre: logged.user.name,
-                direccion: logged.user.direction,
-                passwordR: ''
-            }
-            setDatos(auxDatos)
-        }
-    }, [])
-
-    
-    useEffect(() => {
-      if (!logged.estaLogueado) navigate('/')
-    }, [logged]);
-
     const [errores, setError] = useState({
         email: null,
         password: null,
@@ -46,6 +25,7 @@ export const Cuentausuario=()=>{
         passwordR: null
     })
 
+    const navigate=useNavigate();
 
     const handleChange = (e) => {
         let auxErrores = { ...errores }
@@ -69,67 +49,69 @@ export const Cuentausuario=()=>{
         setError(auxErrores)
     }
 
-    const editar=()=>{
-        setEditar(!noEditar)
-    }
-    
-    const guardarCambios = async () => {
+    const crearCuenta = async () => {
         let valido = true;
         let auxErrores = { ...errores }
         for (const key in datos) {
             if (datos[key] == null) {
                 auxErrores[key] = textErrors('vacio')
+                setError(auxErrores)
                 valido = false;
             }
         }
-        if(datos['password']!='' && datos['passwordR']=='') {
-            auxErrores['passwordR'] = textErrors('vacio');
-            valido = false;
-        }
-        setError(auxErrores)
+
         if (valido) {
-            const token= obtenerToken();
-            const passwordNueva=(datos.password!='')?datos.password:null
-            const usuarioModificado=await modificarusuario(logged.user._id, datos.nombre, datos.email,passwordNueva, datos.direccion, token)
-            cambiarLogged(usuarioModificado)
-            editar()
+            const usuarioNuevo=await crearusuario(datos.nombre, datos.email, datos.password, datos.direccion)
+7
+            //const crearUsuario = await loggear(datos.email, datos.password).catch((error) => console.log(error));
+            if (usuarioNuevo.error) {
+                let auxErrores = { ...errores }
+                auxErrores['mensajeError'] = usuarioNuevo.message;
+                setError(auxErrores)
+            } else {
+                const login = await loggear(datos.email, datos.password).catch((error) => console.log(error));
+                if (login.error) {
+                    let auxErrores = { ...errores }
+                    auxErrores['mensajeError'] = login.message;
+                    setError(auxErrores)
+                } else {
+                    cambiarLogged(login.usuario)
+                    guardarToken(login.token)
+                    navigate('/')
+                }
+            }
         }
     }
-
-    
     return (
         <div className={styles.cajaForm}>
             <h2>CREAR CUENTA</h2>
             <div className={styles.cajaInputs}>
                 <label for='nombre'>Nombre Completo</label>
-                <input type="nombre" id='nombre' name='nombre' disabled={noEditar} onChange={(e) => handleChange(e)} value={datos.nombre} />
+                <input type="nombre" id='nombre' name='nombre' onChange={(e) => handleChange(e)} value={datos.nombre} />
                 <span className='errorSpan'>{errores.nombre}</span>
             </div>
             <div className={styles.cajaInputs}>
                 <label for='email'>Email</label>
-                <input type="email" id='email' name='email' disabled={noEditar}  onChange={(e) => handleChange(e)} value={datos.email} />
+                <input type="email" id='email' name='email' onChange={(e) => handleChange(e)} value={datos.email} />
                 <span className='errorSpan'>{errores.email}</span>
             </div>
             <div className={styles.cajaInputs}>
                 <label for='direccion'>Dirección</label>
-                <input type="direccion" id='direccion' disabled={noEditar}  name='direccion' onChange={(e) => handleChange(e)} value={datos.direccion} />
+                <input type="direccion" id='direccion' name='direccion' onChange={(e) => handleChange(e)} value={datos.direccion} />
                 <span className='errorSpan'>{errores.direccion}</span>
             </div>
-            {!noEditar && <>
-                <div className={styles.cajaInputs}>
+            <div className={styles.cajaInputs}>
                 <label for='password'>Contraseña</label>
-                <input type="password" id='password' disabled={noEditar} name='password' onChange={(e) => handleChange(e)} value={datos.password} />
+                <input type="password" id='password' name='password' onChange={(e) => handleChange(e)} value={datos.password} />
                 <span className='errorSpan'>{errores.password}</span>
             </div>
             <div className={styles.cajaInputs}>
                 <label for='passwordR'>Repita la Contraseña</label>
-                <input type="password" id='passwordR'disabled={noEditar}  name='passwordR' onChange={(e) => handleChange(e)} value={datos.passwordR} />
+                <input type="password" id='passwordR' name='passwordR' onChange={(e) => handleChange(e)} value={datos.passwordR} />
                 <span className='errorSpan'>{errores.passwordR}</span>
             </div>
-            <button onClick={() => guardarCambios()}>GUARDAR</button>
-            </>}
 
-            <button onClick={() => editar()}>{(noEditar)?'EDITAR':'CANCELAR'}</button>
+            <button onClick={() => crearCuenta()}>GUARDAR</button>
             <Link className='enlace' to="/login">
                 <p className={styles.enlace}>LOGIN</p>
             </Link>
@@ -138,4 +120,4 @@ export const Cuentausuario=()=>{
     )
 }
 
-export default Cuentausuario;
+export default Crearcuentausuario;

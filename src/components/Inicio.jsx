@@ -3,7 +3,6 @@ import Listcards from "./Listacards";
 import styles from "../styles/inicio.module.css"
 
 export const Inicio=(props)=>{
-  console.log(props.cantidad, props.games)
     return <div className={styles.cajainicio}>
     <Filters cambiarLimit={(x)=>props.addLimit(x)} pasarFiltros={(x)=>props.addFilter(x)}></Filters>
     {props.games!=null 

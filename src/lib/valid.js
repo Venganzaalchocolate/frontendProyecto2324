@@ -32,8 +32,17 @@ export const validPassword = (pass) => {
   return true;
 };
 
-export const validString = (str) => {
+export const validText=(texto, longitudMinima, longitudMaxima, numerosycaracteresespeciales=false)=>{
+  // Verificar la longitud del texto
+  if (texto.length < longitudMinima || texto.length > longitudMaxima) {
+      return false;
+  }
 
-  // Si pasó ambas verificaciones, entonces el dato es un string válido
-  return true;
+  // Definir la expresión regular para caracteres permitidos (letras, números y espacios)
+  const regex =(numerosycaracteresespeciales) ?/^[a-zA-ZÀ-ÿ0-9\s,º:/()]+$/:/^[a-zA-ZÀ-ÿ\s]+$/;
+  return regex.test(texto);
+}
+
+export const validPasswordRepeat=(str1,str2)=>{
+  return str1 === str2;
 }
