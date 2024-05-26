@@ -20,10 +20,10 @@ const MenuUser=()=>{
             <div className={styles.menuUsuario}>
                 <MdClose onClick={()=>visibleMenu()}></MdClose>
                 <ul>
-                    <Link to='/usuario'>
+                    <Link to='/usuario' onClick={()=>visibleMenu()}>
                         <li>TU CUENTA</li>
                     </Link>
-                    <Link to='/historialpedidos'>
+                    <Link to='/historialpedidos' onClick={()=>visibleMenu()}>
                         <li>HISTORIAL DE PEDIDOS</li>
                     </Link>
                 </ul>

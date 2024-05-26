@@ -13,6 +13,14 @@ export const gamesCategory= async()=>{
     return datos.data
 }
 
+export const gameId=async(id)=>{
+    const url=`${import.meta.env.VITE_API}/games/${id}`
+    const response = await fetch(url);
+    const data = await response.json();
+    if(data.error) return data
+    return data.data
+}
+
 export const gamesWithFilter=async (datos, limite)=>{
     let dates={...datos};
     dates["minimo"]=limite[0];
@@ -124,12 +132,13 @@ export const tokenUser = async (token) => {
     });
     if(response.status==403) return {error:true,message:'Token no valido'}
     const data = await response.json();
+    if(data.error) return data
     return data.data
 }
 
 export const historyOrders = async (token, id) => {
     const datos = {
-        id:id,
+        id,
     };
     const url=`${import.meta.env.VITE_API}/orders`
     const response = await fetch(url, {
@@ -140,8 +149,8 @@ export const historyOrders = async (token, id) => {
         },
         body:JSON.stringify(datos)
     });
-    if(response.status==409) return {error:true,message:'Token no valido'}
     const data = await response.json();
+    if(data.error) return data
     return data.data
 }
 

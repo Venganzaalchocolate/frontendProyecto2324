@@ -12,6 +12,9 @@ import { Pedidos } from './components/Pedidos.jsx'
 import { Tramitarpedido } from './components/TramitarPedido.jsx'
 import { Inicio } from './components/Inicio.jsx'
 import Crearcuentausuario from './components/Creacuenta.jsx'
+import Spinner from './components/spinner.jsx'
+import DetalleJuego from './components/DetalleJuego.jsx'
+import NotFound from './components/NotFound.jsx'
 
 
 
@@ -30,10 +33,10 @@ function App() {
       const token= obtenerToken();
       if(token!=null) {
         const user= await tokenUser(token)
-        if(!user.error){
-          cambiarLogged(user)
-        } else {
+        if(user.error){
           logout()
+        } else {
+          cambiarLogged(user)
         }
       } else {
         logout()
@@ -57,16 +60,22 @@ function App() {
     <CartProvider>
       <BrowserRouter>
         <Header></Header>
-        <main>
-          <Routes>
-            <Route path="/"  element={<Inicio limit={limit} cantidad={cantidad} games={games} addLimit={(x)=>addLimit(x)} addFilter={(x)=>addFilter(x)}/>} />
-            <Route path="/usuario" element={<Cuentausuario/>}/>
-            <Route path='/historialpedidos' element={<Pedidos/>} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/crearcuenta" element={<Crearcuentausuario/>} />
-            <Route path='/tramitarpedido' element={<Tramitarpedido/>}/>
-          </Routes>
-        </main>
+        {games!=null 
+        ?  <main>
+            <Routes>
+              <Route path="/"  element={<Inicio limit={limit} cantidad={cantidad} games={games} addLimit={(x)=>addLimit(x)} addFilter={(x)=>addFilter(x)}/>} />
+              <Route path="/usuario" element={<Cuentausuario/>}/>
+              <Route path='/historialpedidos' element={<Pedidos/>} />
+              <Route path="/login" element={<Login/>} />
+              <Route path="/crearcuenta" element={<Crearcuentausuario/>} />
+              <Route path='/tramitarpedido' element={<Tramitarpedido/>}/>
+              <Route path='/juego/:id' element={<DetalleJuego/>}/>
+              <Route path='/*' element={<NotFound/>}/>
+            </Routes>
+          </main>
+        : <Spinner></Spinner>
+        }
+        
         <Footer></Footer>
       </BrowserRouter>
     

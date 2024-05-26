@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from '../styles/form.module.css';
-import { validEmail, validPassword, validText, validPasswordRepeat } from '../lib/valid';
+import { validEmail, validPassword, validText, validPasswordRepeat, validToken } from '../lib/valid';
 import { textErrors } from '../lib/textErrors';
 import { modificarusuario } from '../lib/data';
 import { useLogin } from '../hooks/useLogin';
@@ -9,7 +9,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useEffect} from 'react';
 
 export const Cuentausuario=()=>{
-    const { logged, cambiarLogged } = useLogin()
+    const { logged, cambiarLogged, logout } = useLogin()
     const [noEditar, setEditar]=useState(true)
     const [datos,setDatos]=useState({
         email: null,
@@ -91,8 +91,16 @@ export const Cuentausuario=()=>{
             const token= obtenerToken();
             const passwordNueva=(datos.password!='')?datos.password:null
             const usuarioModificado=await modificarusuario(logged.user._id, datos.nombre, datos.email,passwordNueva, datos.direccion, token)
-            cambiarLogged(usuarioModificado)
-            editar()
+            console.log('valid token')
+            console.log(!validToken(usuarioModificado))
+            if (!validToken(usuarioModificado)){
+                logout();
+                navigate('/login');
+            } else{
+                cambiarLogged(usuarioModificado)
+                editar()
+            }
+            
         }
     }
 

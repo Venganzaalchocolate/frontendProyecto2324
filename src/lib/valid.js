@@ -1,3 +1,4 @@
+
 export const validEmail = (email) => {
   // Expresión regular para validar una dirección de correo electrónico
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,4 +46,9 @@ export const validText=(texto, longitudMinima, longitudMaxima, numerosycaractere
 
 export const validPasswordRepeat=(str1,str2)=>{
   return str1 === str2;
+}
+
+export const validToken=(respuesta)=>{
+  if(respuesta.error && respuesta.message.includes('token')) return false;
+  return respuesta
 }

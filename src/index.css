@@ -112,6 +112,18 @@ button:hover{
   color: var(--color-lila);
 }
 
+#notfound{
+  display: flex;
+  flex: 1 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#notfound>img{
+  max-width: 800px;
+}
+
 
 .links{
   color: #350E43;

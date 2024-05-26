@@ -6,12 +6,15 @@ import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useLogin } from '../hooks/useLogin';
 import MenuUser from './MenuUser';
+import { useEffect } from "react";
 
 
 
 const Header = () => {
     const { logged } = useLogin()
 
+    
+    console.log(logged)
     return (
         <header className={styles.header}>
             <div className={styles.contenedorEnvioSociales}>
