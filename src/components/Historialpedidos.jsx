@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useLogin } from "../hooks/useLogin"
 import { useNavigate } from 'react-router-dom';
 import { obtenerToken } from "../lib/serviceToken";
-import { historyOrders } from "../lib/data";
+import { historyOrders, tokenUser } from "../lib/data";
 import styles from '../styles/form.module.css';
 import stylesDos from '../styles/historiaslPedidos.module.css';
 import { formatDateTime } from "../lib/utils";
 import Spinner from "./spinner";
-import { validToken } from "../lib/valid";
+import { validUser } from "../lib/valid";
 
 
 export const Historialpedidos = ({ver}) => {
@@ -17,11 +17,19 @@ export const Historialpedidos = ({ver}) => {
 
   useEffect(() => {
     if (!logged.estaLogueado) navigate('/login')
+    const token = obtenerToken();
+    const validToken=async ()=>{
+        const response= await tokenUser(token)
+        if(response ==null || response.error) {
+            logout()
+            navigate('/')
+        }
+    }
+    validToken();
     const cargarDatos = async () => {
       const id = logged.user._id
-      const token = obtenerToken();
       const respuesta = await historyOrders(token, id)
-      if (!validToken(respuesta)){
+      if (!validUser(respuesta)){
         logout();
         navigate('/login');
       } else{

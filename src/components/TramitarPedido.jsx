@@ -9,8 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import { crearPedido } from '../lib/data';
 import { obtenerToken } from '../lib/serviceToken';
 import { calcularPrecio } from '../lib/utils';
+import { Mensajes } from './Mensajes';
 
-export const Tramitarpedido = () => {
+export const Tramitarpedido = ({addMensaje}) => {
     const {products, removeProduct, reduceProduct, addCart} = useCart()
     const {logged}=useLogin()
     const [direccion, setDireccion]=useState('hhhhh')
@@ -34,9 +35,11 @@ export const Tramitarpedido = () => {
     
     let precioTotal=0;
 
-    const crearOrder=()=>{
+    const crearOrder=async ()=>{
         const token=obtenerToken();
-        crearPedido(logged.user._id, products, direccion, token, precioTotal)
+        const auxPedido=await crearPedido(logged.user._id, products, direccion, token, precioTotal);
+        addMensaje('titulo prueba', 'contenidoprueba')
+
     }
 
     return (
@@ -80,6 +83,7 @@ export const Tramitarpedido = () => {
                 <label htmlFor="pago">Tranferencia</label> 
             </div>
             <button className={stylesDos.button} onClick={()=>crearOrder()}>TRAMITAR PEDIDO</button>
+            
         </div>
     )
 }

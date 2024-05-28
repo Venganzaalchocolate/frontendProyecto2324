@@ -12,6 +12,10 @@ export const textErrors=(tipo)=>{
             return "La contraseña debe ser la misma"
         case "vacio":
             return "No puedes dejar el campo vacio";
+        case "nombreDuplicado":
+            return "El nombre de usuario ya existe, porfavor introduzca otro nombre";
+        case "emailDuplicado":
+            return "El email ya existe, porfavor inicie sesión";
         default:
           return null;
       }

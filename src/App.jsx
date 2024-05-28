@@ -15,6 +15,8 @@ import Crearcuentausuario from './components/Creacuenta.jsx'
 import Spinner from './components/spinner.jsx'
 import DetalleJuego from './components/DetalleJuego.jsx'
 import NotFound from './components/NotFound.jsx'
+import Contacto from './components/Contacto.jsx'
+import { Mensajes } from './components/Mensajes.jsx'
 
 
 
@@ -25,6 +27,11 @@ function App() {
   const [games, setGames]=useState(null)
   const [componente,setComponente]=useState('Home')
   const {cambiarLogged, logged, logout}=useLogin()
+  const [mensajeVisible, setMensajeVisible]=useState({
+    visible:false,
+    titulo:'',
+    contenido:''
+  })
   
   useEffect(()=>{
     const cargarDatos = async () => {
@@ -33,7 +40,7 @@ function App() {
       const token= obtenerToken();
       if(token!=null) {
         const user= await tokenUser(token)
-        if(user.error){
+        if(user==null||user.error ){
           logout()
         } else {
           cambiarLogged(user)
@@ -55,6 +62,22 @@ function App() {
     setLimit(num)
   }
 
+  const addMensaje=(titulo, mensaje)=>{
+    setMensajeVisible({
+      visible:true,
+      titulo:titulo,
+      contenido:mensaje
+    })
+  }
+
+  const cerrarMensaje=()=>{
+    setMensajeVisible({
+      visible:false,
+      titulo:'',
+      contenido:''
+    })
+  }
+
 
   return (
     <CartProvider>
@@ -68,14 +91,17 @@ function App() {
               <Route path='/historialpedidos' element={<Pedidos/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/crearcuenta" element={<Crearcuentausuario/>} />
-              <Route path='/tramitarpedido' element={<Tramitarpedido/>}/>
+              <Route path='/tramitarpedido' element={<Tramitarpedido addMensaje={(x,y)=>addMensaje(x,y)}/>}/>
               <Route path='/juego/:id' element={<DetalleJuego/>}/>
+              <Route path='/contacto' element={<Contacto/>}/>
+   
               <Route path='/*' element={<NotFound/>}/>
             </Routes>
           </main>
         : <Spinner></Spinner>
         }
         
+        {mensajeVisible.visible && <Mensajes cerrarMensaje={()=>cerrarMensaje()} titulo={mensajeVisible.titulo} contenido={mensajeVisible.contenido}></Mensajes>}
         <Footer></Footer>
       </BrowserRouter>
     

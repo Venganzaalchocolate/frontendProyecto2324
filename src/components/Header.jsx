@@ -13,8 +13,6 @@ import { useEffect } from "react";
 const Header = () => {
     const { logged } = useLogin()
 
-    
-    console.log(logged)
     return (
         <header className={styles.header}>
             <div className={styles.contenedorEnvioSociales}>

@@ -48,7 +48,8 @@ export const validPasswordRepeat=(str1,str2)=>{
   return str1 === str2;
 }
 
-export const validToken=(respuesta)=>{
+export const validUser=(respuesta)=>{
   if(respuesta.error && respuesta.message.includes('token')) return false;
   return respuesta
 }
+

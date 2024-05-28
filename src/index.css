@@ -35,9 +35,23 @@
 }
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'RobotoCondensed';
   src: url('./styles/fonts/RobotoCondensed-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RobotoNormal';
+  src: url('./styles/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RobotoMedium';
+  src: url('./styles/fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
 }
 

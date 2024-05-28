@@ -5,7 +5,7 @@
     border-radius: 15px;
     height: fit-content;
     justify-self: center;
-    padding: 2rem;
+    padding: 1rem;
     margin: 1rem;
     min-width: 250px;
     width: auto;
@@ -42,7 +42,7 @@
 }
 
 
-.contenedorCaracteristicas>.caracteristica>:nth-child(1){
+.contenedorCaracteristicas>.caracteristica>:nth-child(1), .contenedorEditorial>:nth-child(1){
     font-weight: bold;
     color: var(--color-lila);
     border-bottom: var(--color-naranja) 3px solid;
@@ -50,12 +50,14 @@
     text-transform: uppercase;
     font-size: 8pt;
     font-family: 'Courier';
+    width: fit-content;
 }
 
-.contenedorCaracteristicas>.caracteristica>:nth-child(2){
+.contenedorCaracteristicas>.caracteristica>:nth-child(2), .contenedorEditorial>:nth-child(2){
     font-weight: bold;
     padding: 0.3rem 0;
     text-transform: uppercase;
+    font-size: 8pt;
 
 }
 
@@ -64,7 +66,69 @@
     flex-direction: column;
 }
 
+.contenedorInfoPrincipal>:nth-child(1){
+    text-align: center;
+    color: var(--color-lila);
+    text-transform: uppercase;
+}
+
+.contenedorInfoPrincipal>:nth-child(2){
+    text-align: left;
+    font-size: 10pt;
+    font-family: 'RobotoNormal';
+    padding: 1rem 0;;
+}
+
 .contenedorEditorial{
     display: flex;
     flex-direction: column;
 }
+
+.botones{
+    display: flex;
+    flex-direction: column;
+}
+
+.botones>:nth-child(1){
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.botones>:nth-child(1)> button{
+    padding: 0 0.5rem;
+    border: none;
+    border-radius: 10px;
+    margin: 1rem;
+}
+
+
+
+@media screen and (min-width: 700px) {
+    .contenedorDetalleJuego {
+      flex-direction: row;
+      gap: 3rem;
+      max-width: 1200px;
+    }
+
+    .contenedorDetalleJuego>:nth-child(1), .contenedorDetalleJuego>:nth-child(2){
+        flex: 50% 1;
+    }
+
+
+    .contenedorDetalleJuego>:nth-child(2){
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .contenedorInfoPrincipal{
+        flex:1;
+    }
+
+    .botones{
+        justify-self: end;
+    }
+
+
+  }
