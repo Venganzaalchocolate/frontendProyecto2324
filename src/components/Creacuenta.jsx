@@ -8,7 +8,7 @@ import { guardarToken } from '../lib/serviceToken';
 import { useNavigate, Link } from 'react-router-dom';
 
 
-export const Crearcuentausuario = () => {
+export const Crearcuentausuario = ({addMensaje}) => {
     const { logged, cambiarLogged } = useLogin()
     const [datos,setDatos]=useState({
         email: null,
@@ -75,6 +75,7 @@ export const Crearcuentausuario = () => {
                     auxErrores['mensajeError'] = login.message;
                     setError(auxErrores)
                 } else {
+                    addMensaje(`Bienvenido ${usuarioNuevo.name}`, 'Tu cuenta se ha creado con éxito')
                     cambiarLogged(login.usuario)
                     guardarToken(login.token)
                     navigate('/')

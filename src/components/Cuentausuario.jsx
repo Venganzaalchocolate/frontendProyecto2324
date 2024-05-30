@@ -8,7 +8,7 @@ import { guardarToken, obtenerToken } from '../lib/serviceToken';
 import { useNavigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
-export const Cuentausuario = () => {
+export const Cuentausuario = ({addMensaje}) => {
     const { logged, cambiarLogged, logout } = useLogin()
     const [noEditar, setEditar] = useState(true)
     const [datos, setDatos] = useState({
@@ -18,6 +18,8 @@ export const Cuentausuario = () => {
         direccion: null,
         passwordR: ''
     })
+
+    console.log(logged.user)
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -127,6 +129,7 @@ export const Cuentausuario = () => {
                     logout();
                     navigate('/login');
                 } else {
+                    addMensaje('Usuario Editado', 'El usuario se ha editado con éxito')
                     cambiarLogged(usuarioModificado)
                     editar()
                 }

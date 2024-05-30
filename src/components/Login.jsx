@@ -62,7 +62,8 @@ const Login=()=>{
             } else {
                 cambiarLogged(login.usuario)
                 guardarToken(login.token)
-                navigate('/')
+                if(login.usuario.role=='admin') navigate('/admin')
+                else navigate('/')
             }
         }
     }

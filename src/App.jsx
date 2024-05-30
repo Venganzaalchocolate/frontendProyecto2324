@@ -17,21 +17,22 @@ import DetalleJuego from './components/DetalleJuego.jsx'
 import NotFound from './components/NotFound.jsx'
 import Contacto from './components/Contacto.jsx'
 import { Mensajes } from './components/Mensajes.jsx'
+import MenuAdmin from './components/Administrador.jsx'
 
 
 
 function App() {
-  const [limit, setLimit]=useState([0,20])
+  const [limit, setLimit]=useState([0,10])
   const [cantidad,setCantidad]=useState(0)
   const [filter, setFilter]=useState({})
   const [games, setGames]=useState(null)
-  const [componente,setComponente]=useState('Home')
   const {cambiarLogged, logged, logout}=useLogin()
   const [mensajeVisible, setMensajeVisible]=useState({
     visible:false,
     titulo:'',
     contenido:''
   })
+
   
   useEffect(()=>{
     const cargarDatos = async () => {
@@ -52,7 +53,11 @@ function App() {
       setGames(respuesta); // Actualiza el estado con los datos recibidos
     };
     cargarDatos();
+    
   }, [filter, limit]);
+
+ 
+
   
   const addFilter=(filters)=>{
     setFilter(filters)
@@ -63,6 +68,7 @@ function App() {
   }
 
   const addMensaje=(titulo, mensaje)=>{
+
     setMensajeVisible({
       visible:true,
       titulo:titulo,
@@ -86,14 +92,15 @@ function App() {
         {games!=null 
         ?  <main>
             <Routes>
-              <Route path="/"  element={<Inicio limit={limit} cantidad={cantidad} games={games} addLimit={(x)=>addLimit(x)} addFilter={(x)=>addFilter(x)}/>} />
-              <Route path="/usuario" element={<Cuentausuario/>}/>
+              <Route path="/"  element={<Inicio filtros={filter} limit={limit} cantidad={cantidad} games={games} addLimit={(x)=>addLimit(x)} addFilter={(x)=>addFilter(x)}/>} />
+              <Route path='/admin' element={<MenuAdmin/>}/>
+              <Route path="/usuario" element={<Cuentausuario addMensaje={(x,y)=>addMensaje(x,y)}/>}/>
               <Route path='/historialpedidos' element={<Pedidos/>} />
               <Route path="/login" element={<Login/>} />
-              <Route path="/crearcuenta" element={<Crearcuentausuario/>} />
+              <Route path="/crearcuenta" element={<Crearcuentausuario addMensaje={(x,y)=>addMensaje(x,y)}/>} />
               <Route path='/tramitarpedido' element={<Tramitarpedido addMensaje={(x,y)=>addMensaje(x,y)}/>}/>
               <Route path='/juego/:id' element={<DetalleJuego/>}/>
-              <Route path='/contacto' element={<Contacto/>}/>
+              <Route path='/contacto' element={<Contacto addMensaje={(x,y)=>addMensaje(x,y)}/>}/>
    
               <Route path='/*' element={<NotFound/>}/>
             </Routes>

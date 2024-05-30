@@ -7,7 +7,7 @@ import { MdClose } from "react-icons/md";
 
 const MenuUser=()=>{
     const [visible, setVisible]=useState(false)
-    const {logout} = useLogin()
+    const {logged, logout} = useLogin()
 
     const visibleMenu=()=>{
         setVisible(!visible)
@@ -26,6 +26,12 @@ const MenuUser=()=>{
                     <Link to='/historialpedidos' onClick={()=>visibleMenu()}>
                         <li>HISTORIAL DE PEDIDOS</li>
                     </Link>
+                    {logged.user.role=='admin' && 
+                    <Link to='/admin' onClick={()=>visibleMenu()}>
+                    <li>PANEL DE CONTROL</li>
+                    </Link>
+                    
+                    }
                 </ul>
 
                 <button onClick={()=>logout()}>CERRAR SESIÓN</button>

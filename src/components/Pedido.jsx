@@ -14,7 +14,7 @@ export const Pedido = ({pedido}) => {
                 <span><Estados estado={pedido.state}/></span>
             </div>
             <p className={stylesDos.tituloDatos} >DIRECCIÓN:</p>
-            <p>{pedido.direccion}</p>
+            <p>{pedido.address}</p>
             <p className={stylesDos.tituloDatos} >PRODUCTOS:</p>
             {pedido.listaJuegos.map((x)=>{
                 return <div className={stylesDos.cajaJuego}>

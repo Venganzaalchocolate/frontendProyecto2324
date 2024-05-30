@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 const Card=({juego})=>{
     const {addCart} = useCart()
     return (
-        <Link to={`/juego/${juego._id}`}>
-            <div className={styles.cajaCard} key={juego._id}>
+        <Link to={`/juego/${juego._id}` } >
+            <div className={styles.cajaCard} key={juego._id} >
                 <picture>
                     <source srcSet={`/img/desktop/${juego.image}.jpg`} media="(min-width: 1200px)" />
                     <source srcSet={`/img/tablet/${juego.image}.jpg`} media="(min-width: 800px)" />

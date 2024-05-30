@@ -71,6 +71,7 @@ const DetalleJuego=({juego})=>{
                     <p>{(productSelect!=null)?productSelect.quantity:0}</p>
                     <button onClick={()=>quitarProducto()}>-</button>
                 </div>
+                <p>Stock: {game.stock}</p>
                 <button onClick={()=>addCart(game)}>
                     {(productSelect!=null)?(game.price*productSelect.quantity).toFixed(2):game.price} €
                 </button>

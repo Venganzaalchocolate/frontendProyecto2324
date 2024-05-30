@@ -4,11 +4,13 @@ import styles from '../styles/filters.module.css';
 import { gamesCategory } from '../lib/data';
 import { IoClose } from "react-icons/io5";
 
-const Filters=({pasarFiltros, cambiarLimit})=>{
+const Filters=({pasarFiltros, cambiarLimit, filtros})=>{
     const [inputsCheket, setInputsChecked]=useState({})
     const [categorias, setCategorias]=useState(null)
-    const [precio, setPrecio]=useState([0,0])
+    const [precio, setPrecio]=useState([filtros.precioMinimo,filtros.precioMaximo])
     const [visible, setVisible]=useState(false)
+
+
 
     const handleChangeFilter=(e)=>{
         const category=e.target.value;
@@ -47,6 +49,12 @@ const Filters=({pasarFiltros, cambiarLimit})=>{
     const filtrosVisibles=()=>{
         setVisible(!visible)
     }
+
+    const quitarFiltros=()=>{
+        setInputsChecked({})
+        setPrecio([0,0])
+        pasarFiltros({})
+    }
     
 
     useEffect(()=>{
@@ -57,6 +65,15 @@ const Filters=({pasarFiltros, cambiarLimit})=>{
           respuesta.map((x)=>{
             listaInputs[x]=false
           })
+          if(Object.keys(filtros).length>0){
+            if(Object.keys(filtros).includes('categorias')){
+                filtros.categorias.map((x)=>{
+                    listaInputs[x]=true
+                })
+            }
+            
+          }
+          
           setInputsChecked(listaInputs)
         };
         
@@ -66,14 +83,18 @@ const Filters=({pasarFiltros, cambiarLimit})=>{
       
     return(
         <>
+
         {!!visible && <div className={styles.cajafilters}>
             <div className={styles.contenedorX}><IoClose onClick={()=>filtrosVisibles()}/></div>
             <h2 className={styles.h2}>Filtrar</h2>
             <h3 className={styles.h3}>Categorias</h3>
-            {categorias!=null ? categorias.map((x)=>{
+            {categorias!=null ? categorias.map((x,i,a)=>{
                 return (
-                    <div className={styles.cajaCategorias}>
-                    <input className={styles.input}  name={x} id={x} type='checkbox' value={x} onChange={(e)=>handleChangeFilter(e)}/>
+                    <div className={styles.cajaCategorias} key={`${x}${i}`}>
+                        {inputsCheket[x]==true 
+                        ? <input className={styles.input} checked name={x} id={x} type='checkbox' value={x} onChange={(e)=>handleChangeFilter(e)}/>
+                        : <input className={styles.input}  name={x} id={x} type='checkbox' value={x} onChange={(e)=>handleChangeFilter(e)}/>
+                    } 
                     <label className={styles.label} for={x}>{x}</label>
                     </div>
             )
@@ -91,6 +112,7 @@ const Filters=({pasarFiltros, cambiarLimit})=>{
                 
             </div>
             <button onClick={()=>addFilter()}>Filtrar</button>
+            <button onClick={()=>quitarFiltros()}>Quitar Filtros</button>
         </div>}
         {!visible && <button id={styles.botonFiltroMobile} onClick={()=>filtrosVisibles()}>FILTRAR</button>}
         

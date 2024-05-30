@@ -50,6 +50,37 @@ export const gamesWithFilter=async (datos, limite)=>{
     return data.data
   }
 
+export const gamesAdd=async(datos,token)=>{
+    const datosAux = {
+        name: datos.name,
+        category: datos.category,
+        author: datos.author,
+        publisher: datos.publisher,
+        numberOfPlayers: datos.numberOfPlayers,
+        recommendedAge: datos.recommendedAge,
+        duration: datos.duration,
+        description: datos.description,
+        image: 'dulcecaos',
+        price: datos.price,
+        stock: datos.stock
+    };
+    const url=`${import.meta.env.VITE_API}/`
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(datosAux)
+    });
+    //if(response.status!=200) return {error:true,message:response.body.message}
+    const data = await response.json();
+    if(data.error){
+        return {error:true, message: data.message}
+    }
+    else return data.data
+}
+
 export const loggear = async (email, password) => {
     const datos = {
         email,

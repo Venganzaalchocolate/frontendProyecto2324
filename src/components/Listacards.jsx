@@ -17,10 +17,11 @@ const Listcards=({games, cambiarLimit, cantidad, numeroCardXPagina})=>{
         for (let index = pagActual; index <= pagActual+2; index++) {
             if(pagActual==index-1) pag.push(<p className={styles.pagActual} onClick={()=>cambiarPagina(index-1)}>{index}</p>)
             else {
-                if(index>0 && index<=numPag) pag.push(<p onClick={()=>cambiarPagina(index-1)}>|{index}|</p>)  
+            if(index>0 && index<=numPag) pag.push(<p onClick={()=>cambiarPagina(index-1)}>|{index}|</p>)  
             } 
         }
         pag.push(<p onClick={()=>cambiarPagina(numPag-1)}>&gt;&gt;</p>)
+        pag.push(<p> {numPag} páginas</p>)
         return pag
     }
     const juegos=games;
@@ -29,7 +30,7 @@ const Listcards=({games, cambiarLimit, cantidad, numeroCardXPagina})=>{
             {paginacion()}
         </div>}
         <div className={styles.gridCard}>
-            {juegos.map((juego)=><Card  juego={juego}/>)}
+            {juegos.map((juego,i,a)=><Card  juego={juego}/>)}
         </div> 
         {numPag>0 && <div key='paginacionInferior' className={styles.divPaginacion}>
             {paginacion()}

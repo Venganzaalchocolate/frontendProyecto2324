@@ -53,3 +53,18 @@ export const validUser=(respuesta)=>{
   return respuesta
 }
 
+export const validNumber=(texto, cero=false)=>{
+  let regex =/^(0|[1-9][0-9]*)$/;
+  if(cero) regex =/^[1-9][0-9]*$/;
+  return regex.test(texto);
+}
+
+export const validDecimalNumber=(texto)=>{
+  const regex =/^[0-9]+(\.[0-9]+)?$/;
+  return regex.test(texto);
+}
+
+export const validCategory=(categorias, texto)=>{
+  const texAux=texto.replace(/\s+/g, '').charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+  return categorias.includes(texAux)
+}

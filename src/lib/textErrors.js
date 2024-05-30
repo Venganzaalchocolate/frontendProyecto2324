@@ -1,9 +1,9 @@
-export const textErrors=(tipo)=>{
-    switch(tipo) {
+export const textErrors = (tipo) => {
+    switch (tipo) {
         case "nombre":
-          return "El nombre no es correcto, no debe contener números ni carácteres especiales";
+            return "El nombre no es correcto, no debe contener números ni carácteres especiales";
         case "email":
-          return "El email no está bien escrito ej: email@gmail.com";
+            return "El email no está bien escrito ej: email@gmail.com";
         case "password":
             return "8 carácteres, una minúscula, una mayúscula, un número y un carácter especial";
         case "direccion":
@@ -16,8 +16,28 @@ export const textErrors=(tipo)=>{
             return "El nombre de usuario ya existe, porfavor introduzca otro nombre";
         case "emailDuplicado":
             return "El email ya existe, porfavor inicie sesión";
+        case "name":
+            return "El nombre del juego no es correcto, tiene carácteres no permitidos";
+        case "category":
+            return "Debe seleccionar una opción válida";
+        case "author":
+            return "El autor no es correcto, no debe contener números ni carácteres especiales";
+        case "publisher":
+            return "El editor contiene caractéres no permitidos";
+        case "numberOfPlayers":
+            return "El número de jugadores debe ser un número entero mayor de 0";
+        case "recommendedAge":
+            return "La edad recomendada debe ser un número entero mayor de 0";
+        case "duration":
+            return "La duración debe ser un número entero mayor de 0, expresado en minutos";
+        case "description":
+            return "La descripción no es correcta, no debe contener carácteres especiales ni tener mas de 500 carácteres";
+        case "price":
+            return "El precio debe ser un número entero o decimal mayor que 0";
+        case "stock":
+            return "El stock debe ser un número entero igual o mayor que 0";
         default:
-          return null;
-      }
+            return null;
+    }
 }
 
