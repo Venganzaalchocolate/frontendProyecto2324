@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { useLogin } from "../hooks/useLogin"
+import { useLogin } from "../../hooks/useLogin"
 import { Link, useNavigate } from 'react-router-dom';
-import { obtenerToken } from "../lib/serviceToken";
-import { historyOrders } from "../lib/data";
-import styles from '../styles/form.module.css';
-import stylesDos from '../styles/panelControl.module.css';
-import CrearJuego from "./CrearJuego";
+import { obtenerToken } from "../../lib/serviceToken";
+import { historyOrders } from "../../lib/data";
+import styles from '../../styles/form.module.css';
+import stylesDos from '../../styles/panelControl.module.css';
+import CrearJuego from "./juego/CrearJuego";
+import ModificarJuego from "./juego/ModificarJuego";
+import BorrarJuego from "./juego/EliminarJuego";
 
 
-const MenuAdmin=()=>{
+
+const MenuAdmin=({addMensaje})=>{
     const { logged } = useLogin()
     const [accion, setAccion]=useState(null)
     const navigate = useNavigate()
@@ -23,13 +26,13 @@ const MenuAdmin=()=>{
     const mostrarAccion=()=>{
         switch (accion) {
             case 'jadd':
-                return <CrearJuego cancelarAccion={()=>setAccion(null)}></CrearJuego>
+                return <CrearJuego addMensaje={(x,y,z)=>addMensaje(x,y,z)} cancelarAccion={()=>setAccion(null)}></CrearJuego>
             break;
             case 'jmod':
-                return <p>modificar</p>
+                return <ModificarJuego addMensaje={(x,y,z)=>addMensaje(x,y,z)} cancelarAccion={()=>setAccion(null)}/>
             break;
             case 'jdel':
-                return <p>borrar</p>
+                return <BorrarJuego addMensaje={(x,y,z)=>addMensaje(x,y,z)} cancelarAccion={()=>setAccion(null)}/>
             break;
             default:
                 return null;

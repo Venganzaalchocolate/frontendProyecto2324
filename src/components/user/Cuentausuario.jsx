@@ -19,8 +19,6 @@ export const Cuentausuario = ({addMensaje}) => {
         passwordR: ''
     })
 
-    console.log(logged.user)
-
     const navigate = useNavigate()
     useEffect(() => {
         if (logged.estaLogueado) {
@@ -129,7 +127,7 @@ export const Cuentausuario = ({addMensaje}) => {
                     logout();
                     navigate('/login');
                 } else {
-                    addMensaje('Usuario Editado', 'El usuario se ha editado con éxito')
+                    addMensaje('Usuario Editado', 'El usuario se ha editado con éxito', '/')
                     cambiarLogged(usuarioModificado)
                     editar()
                 }

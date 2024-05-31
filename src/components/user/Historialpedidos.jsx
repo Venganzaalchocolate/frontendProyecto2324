@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { useLogin } from "../hooks/useLogin"
+import { useLogin } from "../../hooks/useLogin"
 import { useNavigate } from 'react-router-dom';
-import { obtenerToken } from "../lib/serviceToken";
-import { historyOrders, tokenUser } from "../lib/data";
+import { obtenerToken } from "../../lib/serviceToken";
+import { historyOrders, tokenUser } from "../../lib/data";
 import styles from '../styles/form.module.css';
 import stylesDos from '../styles/historiaslPedidos.module.css';
-import { formatDateTime } from "../lib/utils";
-import Spinner from "./spinner";
-import { validUser } from "../lib/valid";
+import { formatDateTime } from "../../lib/utils";
+import Spinner from "../spinner";
+import { validUser } from "../../lib/valid";
 
 
 export const Historialpedidos = ({ver}) => {

@@ -54,8 +54,8 @@ export const validUser=(respuesta)=>{
 }
 
 export const validNumber=(texto, cero=false)=>{
-  let regex =/^(0|[1-9][0-9]*)$/;
-  if(cero) regex =/^[1-9][0-9]*$/;
+  let regex =/^[1-9][0-9]*$/; 
+  if(cero) regex =/^(0|[1-9][0-9]*)$/;
   return regex.test(texto);
 }
 

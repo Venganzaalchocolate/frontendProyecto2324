@@ -21,10 +21,28 @@ export const gameId=async(id)=>{
     return data.data
 }
 
-export const gamesWithFilter=async (datos, limite)=>{
+export const gamesWithFilterLimit=async (datos, limite)=>{
     let dates={...datos};
     dates["minimo"]=limite[0];
     dates["maximo"]=limite[1]
+    const url = `${import.meta.env.VITE_API}/gamesfilterlimit/`;
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dates)
+    });
+    const data = await response.json();
+    return data.data
+  }
+
+
+export const gamesWithFilter=async (nombre)=>{
+    const dates={
+        name:nombre
+    };
+
     const url = `${import.meta.env.VITE_API}/gamesfilter/`;
     const response = await fetch(url, {
         method: 'POST',
@@ -43,6 +61,7 @@ export const gamesWithFilter=async (datos, limite)=>{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
+            
         },
         body: JSON.stringify(datos)
     });
@@ -50,7 +69,7 @@ export const gamesWithFilter=async (datos, limite)=>{
     return data.data
   }
 
-export const gamesAdd=async(datos,token)=>{
+export const gamesAdd=async(token, datos)=>{
     const datosAux = {
         name: datos.name,
         category: datos.category,
@@ -64,9 +83,66 @@ export const gamesAdd=async(datos,token)=>{
         price: datos.price,
         stock: datos.stock
     };
-    const url=`${import.meta.env.VITE_API}/`
+    const url=`${import.meta.env.VITE_API}/creargames`
     const response = await fetch(url, {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(datosAux)
+    });
+    //if(response.status!=200) return {error:true,message:response.body.message}
+    const data = await response.json();
+    if(data.error){
+        return {error:true, message: data.message}
+    }
+    else return data.data
+}
+
+export const gamesPut=async(token, datos)=>{
+    
+    const datosAux = {
+        id:datos.juego,
+        name: datos.name,
+        category: datos.category,
+        author: datos.author,
+        publisher: datos.publisher,
+        numberOfPlayers: datos.numberOfPlayers,
+        recommendedAge: datos.recommendedAge,
+        duration: datos.duration,
+        description: datos.description,
+        image: 'dulcecaos',
+        price: datos.price,
+        stock: datos.stock
+    };
+
+    const url=`${import.meta.env.VITE_API}/actualizargames`
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(datosAux)
+    });
+    //if(response.status!=200) return {error:true,message:response.body.message}
+    const data = await response.json();
+    if(data.error){
+        return {error:true, message: data.message}
+    }
+    else return data.data
+}
+
+
+
+export const gamesDelete=async(token, id)=>{
+    const datosAux = {
+        id:id,
+    };
+    const url=`${import.meta.env.VITE_API}/borrargames`
+    const response = await fetch(url, {
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`

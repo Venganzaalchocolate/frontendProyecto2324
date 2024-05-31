@@ -1,14 +1,14 @@
-import styles from '../styles/form.module.css';
-import stylesDos from '../styles/panelControl.module.css';
+import styles from '../../../styles/form.module.css';
+import stylesDos from '../../../styles/panelControl.module.css';
 import { useState, useEffect } from 'react';
-import { validText, validPasswordRepeat, validNumber, validDecimalNumber } from '../lib/valid';
-import { textErrors } from '../lib/textErrors';
-import { gamesCategory, gamesAdd } from '../lib/data';
-import { useLogin } from '../hooks/useLogin';
-import { guardarToken, obtenerToken } from '../lib/serviceToken';
+import { validText, validPasswordRepeat, validNumber, validDecimalNumber, validCategory } from '../../../lib/valid';
+import { textErrors } from '../../../lib/textErrors';
+import { gamesCategory, gamesAdd } from '../../../lib/data';
+import { useLogin } from '../../../hooks/useLogin';
+import { guardarToken, obtenerToken } from '../../../lib/serviceToken';
 import { useNavigate, Link } from 'react-router-dom';
 
-const CrearJuego = ({ cancelarAccion }) => {
+const CrearJuego = ({ cancelarAccion, addMensaje }) => {
     const [category, setCategorias] = useState([])
     const { logged } = useLogin()
     const [datos, setDatos] = useState({
@@ -65,8 +65,6 @@ const CrearJuego = ({ cancelarAccion }) => {
         //if (e.target.name == 'image') valido = validText(e.target.value, datos.password)
         if (e.target.name == 'price') valido = validDecimalNumber(e.target.value)
         if (e.target.name == 'stock') valido = validNumber(e.target.value, true)
-
-
         auxDatos[e.target.name] = e.target.value
         setDatos(auxDatos)
         if (!valido) {
@@ -97,17 +95,8 @@ const CrearJuego = ({ cancelarAccion }) => {
                 auxErrores['mensajeError'] = juegoNuevo.message;
                 setError(auxErrores)
             } else {
-                // const login = await loggear(datos.email, datos.password).catch((error) => console.log(error));
-                // if (login.error) {
-                //     let auxErrores = { ...errores }
-                //     auxErrores['mensajeError'] = login.message;
-                //     setError(auxErrores)
-                // } else {
-                //     addMensaje(`Bienvenido ${usuarioNuevo.name}`, 'Tu cuenta se ha creado con éxito')
-                //     cambiarLogged(login.usuario)
-                //     guardarToken(login.token)
-                //     navigate('/')
-                // }
+                addMensaje('JUEGO AÑADIDO', `Juego: ${juegoNuevo.name} añadido con éxito`, '/admin')
+                cancelarAccion()
             }
         }
     }
@@ -121,7 +110,7 @@ const CrearJuego = ({ cancelarAccion }) => {
         </div>
         <div className={styles.cajaInputs}>
             <label for='category'>Categoria del juego</label>
-            <select id='category' name='category' onChange={(e) => handleChange(e)} value={datos.category}>
+            <select id='category' name='category' onChange={(e) => handleChange(e)}>
                 {category.map((x) => {
                     return <option value={x}>{x}</option>
                 })}
@@ -170,8 +159,8 @@ const CrearJuego = ({ cancelarAccion }) => {
         </div>
 
         <button onClick={() => addJuego()}>GUARDAR</button>
-        <span className='errorSpan'>{errores.mensajeError}</span>
         <button onClick={() => cancelarAccion()}>CANCELAR</button>
+        <span className='errorSpan'>{errores.mensajeError}</span>
     </div>
 }
 

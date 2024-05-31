@@ -1,8 +1,8 @@
 
-import { formatDateTime } from '../lib/utils';
+import { formatDateTime } from '../../lib/utils';
 import styles from '../styles/form.module.css';
 import stylesDos from '../styles/pedido.module.css';
-import { Estados } from './states';
+import { Estados } from '../states';
 
 
 export const Pedido = ({pedido}) => {

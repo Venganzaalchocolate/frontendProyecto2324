@@ -75,7 +75,7 @@ export const Crearcuentausuario = ({addMensaje}) => {
                     auxErrores['mensajeError'] = login.message;
                     setError(auxErrores)
                 } else {
-                    addMensaje(`Bienvenido ${usuarioNuevo.name}`, 'Tu cuenta se ha creado con éxito')
+                    addMensaje(`Bienvenido ${usuarioNuevo.name}`, 'Tu cuenta se ha creado con éxito', '/')
                     cambiarLogged(login.usuario)
                     guardarToken(login.token)
                     navigate('/')

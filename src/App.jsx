@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import {gamesWithFilter, gamesCantidad, tokenUser} from './lib/data.js'
+import {gamesCantidad, tokenUser, gamesWithFilterLimit} from './lib/data.js'
 import Header from './components/Header.jsx'
 import Login from './components/Login.jsx'
 import { CartProvider } from './context/CartProvider.jsx'
@@ -17,7 +17,8 @@ import DetalleJuego from './components/DetalleJuego.jsx'
 import NotFound from './components/NotFound.jsx'
 import Contacto from './components/Contacto.jsx'
 import { Mensajes } from './components/Mensajes.jsx'
-import MenuAdmin from './components/Administrador.jsx'
+import MenuAdmin from './components/admin/Administrador.jsx'
+
 
 
 
@@ -30,13 +31,14 @@ function App() {
   const [mensajeVisible, setMensajeVisible]=useState({
     visible:false,
     titulo:'',
-    contenido:''
+    contenido:'',
+    navegacion:'/'
   })
 
   
   useEffect(()=>{
     const cargarDatos = async () => {
-      const respuesta = await gamesWithFilter(filter, limit)
+      const respuesta = await gamesWithFilterLimit(filter, limit)
       const cantidad=await gamesCantidad(filter);
       const token= obtenerToken();
       if(token!=null) {
@@ -54,7 +56,7 @@ function App() {
     };
     cargarDatos();
     
-  }, [filter, limit]);
+  }, [filter, limit, mensajeVisible]);
 
  
 
@@ -67,12 +69,12 @@ function App() {
     setLimit(num)
   }
 
-  const addMensaje=(titulo, mensaje)=>{
-
+  const addMensaje=(titulo, mensaje, navegacion='/')=>{
     setMensajeVisible({
       visible:true,
       titulo:titulo,
-      contenido:mensaje
+      contenido:mensaje,
+      navegacion:navegacion
     })
   }
 
@@ -93,14 +95,14 @@ function App() {
         ?  <main>
             <Routes>
               <Route path="/"  element={<Inicio filtros={filter} limit={limit} cantidad={cantidad} games={games} addLimit={(x)=>addLimit(x)} addFilter={(x)=>addFilter(x)}/>} />
-              <Route path='/admin' element={<MenuAdmin/>}/>
-              <Route path="/usuario" element={<Cuentausuario addMensaje={(x,y)=>addMensaje(x,y)}/>}/>
+              <Route path='/admin' element={<MenuAdmin addMensaje={(x,y,z)=>addMensaje(x,y,z)}/>}/>
+              <Route path="/usuario" element={<Cuentausuario addMensaje={(x,y,z)=>addMensaje(x,y,z)}/>}/>
               <Route path='/historialpedidos' element={<Pedidos/>} />
               <Route path="/login" element={<Login/>} />
-              <Route path="/crearcuenta" element={<Crearcuentausuario addMensaje={(x,y)=>addMensaje(x,y)}/>} />
-              <Route path='/tramitarpedido' element={<Tramitarpedido addMensaje={(x,y)=>addMensaje(x,y)}/>}/>
+              <Route path="/crearcuenta" element={<Crearcuentausuario addMensaje={(x,y,z)=>addMensaje(x,y,z)}/>} />
+              <Route path='/tramitarpedido' element={<Tramitarpedido addMensaje={(x,y,z)=>addMensaje(x,y,z)}/>}/>
               <Route path='/juego/:id' element={<DetalleJuego/>}/>
-              <Route path='/contacto' element={<Contacto addMensaje={(x,y)=>addMensaje(x,y)}/>}/>
+              <Route path='/contacto' element={<Contacto addMensaje={(x,y,z)=>addMensaje(x,y,z)}/>}/>
    
               <Route path='/*' element={<NotFound/>}/>
             </Routes>
@@ -108,7 +110,7 @@ function App() {
         : <Spinner></Spinner>
         }
         
-        {mensajeVisible.visible && <Mensajes cerrarMensaje={()=>cerrarMensaje()} titulo={mensajeVisible.titulo} contenido={mensajeVisible.contenido}></Mensajes>}
+        {mensajeVisible.visible && <Mensajes cerrarMensaje={()=>cerrarMensaje()} titulo={mensajeVisible.titulo} contenido={mensajeVisible.contenido} navegacion={mensajeVisible.navegacion}></Mensajes>}
         <Footer></Footer>
       </BrowserRouter>
     

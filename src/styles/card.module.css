@@ -99,6 +99,7 @@
   }
 
   .nombre{
+    font-size: 12pt;
     text-transform: uppercase;
     color: var(--color-lila);
     padding-bottom: 1rem;
