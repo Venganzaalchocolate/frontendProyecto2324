@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLogin } from "../hooks/useLogin"
+import { useLogin } from "../../hooks/useLogin"
 import { Link, useNavigate } from 'react-router-dom';
-import { obtenerToken } from "../lib/serviceToken";
-import { historyOrders } from "../lib/data";
+import { obtenerToken } from "../../lib/serviceToken";
+import { historyOrders } from "../../lib/data";
 import { Historialpedidos } from "./Historialpedidos";
 
 import { Pedido } from "./Pedido";

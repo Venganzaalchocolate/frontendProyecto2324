@@ -10,7 +10,6 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const CrearJuego = ({ cancelarAccion, addMensaje }) => {
     const [category, setCategorias] = useState([])
-    const { logged } = useLogin()
     const [datos, setDatos] = useState({
         name: null,
         category: category[0],

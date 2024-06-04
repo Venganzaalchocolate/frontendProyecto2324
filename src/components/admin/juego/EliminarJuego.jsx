@@ -103,7 +103,8 @@ const BorrarJuego = ({ cancelarAccion, addMensaje }) => {
     }
 
     const buscar = async () => {
-        const respuesta = await gamesWithFilter(datos.name_buscar)
+        const textoBuscar=datos.name_buscar
+        const respuesta = await gamesWithFilter(textoBuscar.toLowerCase())
         if (respuesta.error) {
             let auxErrores = { ...errores }
             auxErrores['mensajeError'] = respuesta.message;
@@ -149,6 +150,7 @@ const BorrarJuego = ({ cancelarAccion, addMensaje }) => {
                 <span className='errorSpan'>{errores.name_buscar}</span>
             </div>
             <button onClick={() => buscar()}>BUSCAR</button>
+            <button onClick={() => cancelarAccion()}>CANCELAR</button>
         </div>
         {listaBusqueda != null &&
             <div className={stylesDos.cajaPedidos}>

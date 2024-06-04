@@ -175,6 +175,53 @@ export const loggear = async (email, password) => {
     return data.data
 }
 
+export const userWithId=async(id, token)=>{
+    const url=`${import.meta.env.VITE_API}/user/${id}`
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    });
+    const data = await response.json();
+    if(response.status!=200) return data;
+    else return data.data
+}
+
+export const borrarUsuario=async(id, token)=>{
+    const url=`${import.meta.env.VITE_API}/borrarusuario/${id}`
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    });
+    const data = await response.json();
+    if(response.status!=200) return data;
+    else return data.data
+}
+
+export const userWithFilter=async(filter, token)=>{
+    const dates={
+        name:filter
+    };
+    const url=`${import.meta.env.VITE_API}/usersfilter`
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(dates)
+    });
+    const data = await response.json();
+    if(response.status!=200) return data;
+    else return data.data
+}
+
+
 export const crearusuario = async (nombre, email, password, direccion) => {
     const datos = {
         nombre,
@@ -199,13 +246,14 @@ export const crearusuario = async (nombre, email, password, direccion) => {
     else return data.data
 }
 
-export const modificarusuario = async (id,nombre, email, password, direccion, token) => {
+export const modificarusuario = async (id,nombre, email, password, direccion, token, role='normal') => {
     const datos = {
         id,
         nombre,
         email,
         password,
-        direccion
+        direccion,
+        role
     };
     const url=`${import.meta.env.VITE_API}/actualizarusuario`
     const response = await fetch(url, {
@@ -250,6 +298,24 @@ export const historyOrders = async (token, id) => {
     const url=`${import.meta.env.VITE_API}/orders`
     const response = await fetch(url, {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body:JSON.stringify(datos)
+    });
+    const data = await response.json();
+    if(data.error) return data
+    return data.data
+}
+
+export const modificarPedido=async(pedido, token)=>{
+    const datos = {
+        idPedido:pedido,
+    };
+    const url=`${import.meta.env.VITE_API}/modificarpedido`
+    const response = await fetch(url, {
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`

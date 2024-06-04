@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import styles from '../styles/form.module.css';
-import { validEmail, validPassword, validText, validPasswordRepeat, validUser } from '../lib/valid';
-import { textErrors } from '../lib/textErrors';
-import { modificarusuario, tokenUser } from '../lib/data';
-import { useLogin } from '../hooks/useLogin';
-import { guardarToken, obtenerToken } from '../lib/serviceToken';
+import styles from '../../styles/form.module.css';
+import { validEmail, validPassword, validText, validPasswordRepeat, validUser } from '../../lib/valid';
+import { textErrors } from '../../lib/textErrors';
+import { modificarusuario, tokenUser } from '../../lib/data';
+import { useLogin } from '../../hooks/useLogin';
+import { guardarToken, obtenerToken } from '../../lib/serviceToken';
 import { useNavigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 

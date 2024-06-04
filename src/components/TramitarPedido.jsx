@@ -15,7 +15,7 @@ import { Mensajes } from './Mensajes';
 export const Tramitarpedido = ({ addMensaje }) => {
     const { products, removeProduct, reduceProduct, addCart, removeCart } = useCart()
     const { logged } = useLogin()
-    const [direccion, setDireccion] = useState('hhhhh')
+    const [direccion, setDireccion] = useState('')
     const [cambiarDireccion, setCambiarDireccion] = useState(false)
     const navigate = useNavigate()
 

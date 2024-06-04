@@ -1,7 +1,7 @@
 
 import { formatDateTime } from '../../lib/utils';
-import styles from '../styles/form.module.css';
-import stylesDos from '../styles/pedido.module.css';
+import styles from '../../styles/form.module.css';
+import stylesDos from '../../styles/pedido.module.css';
 import { Estados } from '../states';
 
 

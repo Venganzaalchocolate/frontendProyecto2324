@@ -7,10 +7,8 @@ export function CartProvider({children}){
 
     const addCart=product=>{
         const productInCart=products.findIndex(item=>item._id==product._id)
-        console.log(productInCart)
         if(productInCart>=0){
             const auxCart= structuredClone(products)
-            console.log(auxCart[productInCart].stock>auxCart[productInCart].quantity)
             if(auxCart[productInCart].stock>auxCart[productInCart].quantity) auxCart[productInCart].quantity+=1
             return setProducts(auxCart)
         }else if(product.stock>0){
