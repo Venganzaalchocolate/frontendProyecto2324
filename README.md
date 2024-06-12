@@ -199,5 +199,34 @@ Estilos para el componente de carga.
 * state.module.css
 Estilos para los estados de la aplicación.
 
+
+### 🐳 Uso de Docker
+
+Para construir y ejecutar la imagen Docker de la aplicación, usa los siguientes comandos:
+
+Construir la imagen:
+
+~~~
+docker build -t nombre-imagen .
+~~~
+
+### Ejecutar el contenedor:
+
+~~~
+docker run -d -p <PUERTO_LOCAL>:<PUERTO_CONTENEDOR> --env-file .env nombre-imagen
+~~~
+
+#### ☁️ Despliegue en Render.com
+
+Para desplegar la aplicación en Render.com, sigue estos pasos:
+* Crear un nuevo servicio en Render:
+Ve a la consola de Render.com y crea un nuevo servicio web, seleccionando tu repositorio.
+* Configurar el Dockerfile:
+Asegúrate de que Render detecte y use tu Dockerfile para construir la aplicación.
+* Definir las variables de entorno:
+En la configuración del servicio en Render, define las variables de entorno como se indicó en el archivo .env.
+* Desplegar:
+Render se encargará de construir y desplegar la aplicación automáticamente.
+
 ### 📜 Creador
 Este proyecto está ha sido creado por Elisabet D'Acosta Almirón
