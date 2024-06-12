@@ -149,9 +149,7 @@ const ModificarPedido = ({ cancelarAccion, addMensaje, token }) => {
         }
         else {
             addMensaje('Pedido Tramitado', `Pedido tramitado con éxito, en breve el usuario ${datos.nombre} recibirá un email de confirmación`, '/admin');
-            setOrders(null)
-            setUsuario(null)
-            setProducts([])
+            cancelarAccion();
         }
     }
 
@@ -232,7 +230,7 @@ const ModificarPedido = ({ cancelarAccion, addMensaje, token }) => {
                 </div>
             }
 
-            {listaBusquedaJuego!=null &&
+            {listaBusquedaJuego!=null && orders != null  &&
                 <>
                     <div className={stylesDos.cajaPedidos}>
                         <h3>SELECCIONA UN JUEGO</h3>

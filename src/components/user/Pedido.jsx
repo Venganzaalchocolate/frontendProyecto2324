@@ -3,7 +3,7 @@ import { formatDateTime } from '../../lib/utils';
 import styles from '../../styles/form.module.css';
 import stylesDos from '../../styles/pedido.module.css';
 import { Estados } from '../states';
-
+import { Link } from 'react-router-dom';
 
 export const Pedido = ({pedido}) => {
     return (
@@ -35,7 +35,10 @@ export const Pedido = ({pedido}) => {
             })}
             <p className={stylesDos.precioTotal}>TOTAL: {pedido.totalPrice} €</p>
             <p>¿Has tenido algún problema?</p>
-            <button>CONTACTAR</button>
+            <Link className='enlace' to='/contacto'>
+                <button>CONTACTAR</button>
+            </Link>
+            
         </div>
     )
 }

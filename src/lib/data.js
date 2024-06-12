@@ -281,11 +281,12 @@ export const tokenUser = async (token) => {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(datos)
     });
-    if(response.status==403) return {error:true,message:'Token no valido'}
+    if(response.status==401) return {error:true,message:'Token no valido'}
     const data = await response.json();
     if(data.error) return data
     return data.data
@@ -364,3 +365,25 @@ export const crearPedido= async (id, listaJuegos, address,token, precioTotal ) =
 }
 
 
+export const sendEmail=async (data)=>{
+    console.log('pasa')
+    const datos = {
+        to:data.to,
+        from:data.from,
+        name:data.name,
+        subject:data.subject,
+        message:data.message
+
+    };
+    const url=`${import.meta.env.VITE_API}/contacto`
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(datos)
+    });
+    const resp = await response.json();
+    if(resp.error) return resp
+    return resp.data
+}

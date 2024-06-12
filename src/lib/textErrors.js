@@ -1,7 +1,9 @@
 export const textErrors = (tipo) => {
     switch (tipo) {
+        case "name":
         case "nombre":
             return "El nombre no es correcto, no debe contener números ni carácteres especiales";
+        case "from":
         case "email":
             return "El email no está bien escrito ej: email@gmail.com";
         case "password":
@@ -36,6 +38,10 @@ export const textErrors = (tipo) => {
             return "El precio debe ser un número entero o decimal mayor que 0";
         case "stock":
             return "El stock debe ser un número entero igual o mayor que 0";
+        case "subject":
+            return "El asunto no es correcto, debe tener mínimo 10 carácteres y no debe contener carácteres especiales ni tener mas de 100 carácteres";
+        case "message":
+            return "El motivo no es correcto, debe tener mínimo 10 carácteres y no debe contener carácteres especiales ni tener mas de 500 carácteres";
         default:
             return null;
     }

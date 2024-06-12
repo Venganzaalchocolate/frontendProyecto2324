@@ -15,14 +15,16 @@ import { Mensajes } from './Mensajes';
 export const Tramitarpedido = ({ addMensaje }) => {
     const { products, removeProduct, reduceProduct, addCart, removeCart } = useCart()
     const { logged } = useLogin()
-    const [direccion, setDireccion] = useState('')
+    const [direccion, setDireccion] = useState(logged.user.direction)
     const [cambiarDireccion, setCambiarDireccion] = useState(false)
     const navigate = useNavigate()
+
 
 
     useEffect(() => {
         if (!logged.estaLogueado) navigate('/login')
         if (products.length < 1) navigate('/')
+        
     }, [logged, products]);
 
 
@@ -82,7 +84,13 @@ export const Tramitarpedido = ({ addMensaje }) => {
                     <FaTrashAlt onClick={() => removeProduct(x)}></FaTrashAlt>
                 </div>
             })}
-            <p className={stylesDos.precioTotal}>TOTAL: {precioTotal.toFixed(2)} €</p>
+            <div className={stylesDos.cajaDato}>
+            <p>IVA: 21 %</p>
+            </div>
+            <div className={stylesDos.cajaDato}>
+            <p>ENVIO: {precioTotal.toFixed(2)>40 ?'GRATIS':'4'} €</p>
+            </div>
+            <p className={stylesDos.precioTotal}>TOTAL: {(precioTotal+(precioTotal*0.21)+(precioTotal>40 ?0:4)).toFixed(2)} €</p>
             <p className={stylesDos.tituloDatos} >METODO DE PAGO:</p>
             <div>
                 <input id='pago' name='pago' type='radio' checked />

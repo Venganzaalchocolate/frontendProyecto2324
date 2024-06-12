@@ -62,7 +62,7 @@ export const Crearcuentausuario = ({addMensaje}) => {
 
         if (valido) {
             const usuarioNuevo=await crearusuario(datos.nombre, datos.email, datos.password, datos.direccion)
-7
+
             //const crearUsuario = await loggear(datos.email, datos.password).catch((error) => console.log(error));
             if (usuarioNuevo.error) {
                 let auxErrores = { ...errores }

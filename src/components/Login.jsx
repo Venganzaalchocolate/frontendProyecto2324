@@ -80,7 +80,10 @@ const Login=()=>{
                 <input type="password" id='password' name='password' onChange={(e)=>handleChange(e)} value={datos.password}/>
                 <span className='errorSpan'>{errores.password}</span>
             </div>
-            <p className='fuenteCourier enlace'>¿Has olvidado tu contraseña?</p>
+            <Link className='fuenteCourier enlace' to='/contacto'>
+                <p className={`${styles.enlace} fuenteCourier`} >¿Has olvidado tu contraseña?</p>
+            </Link>
+            
             <button onClick={()=>loguear()}>Entrar</button>
             <Link className='enlace' to="/crearcuenta">
                 <p className={styles.enlace}>CREAR CUENTA</p>
