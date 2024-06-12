@@ -25,7 +25,7 @@ export const gamesWithFilterLimit=async (datos, limite)=>{
     let dates={...datos};
     dates["minimo"]=limite[0];
     dates["maximo"]=limite[1]
-    const url = `${import.meta.env.VITE_API}/gamesfilterlimit/`;
+    const url = `https://backendproyecto2324.onrender.com/api/gamesfilterlimit/`;
     const response = await fetch(url, {
         method: 'POST',
         headers: {
