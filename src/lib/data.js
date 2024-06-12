@@ -1,20 +1,21 @@
+const uri= "https://backendproyecto2324.onrender.com/api";
 
 export const allgames=async()=>{
-    const url=`${import.meta.env.VITE_API}/games`
+    const url=`${uri}/games`
     const respuesta = await fetch(url).catch((error)=>`Error al realizar el fectha de la funcion allgames: ${error}`);
     const datos = await respuesta.json().catch((error)=>`Error al realizar el .json() de la respuesta en la funcion allgames: ${error}`);
     return datos.data
 }
 
 export const gamesCategory= async()=>{
-    const url=`${import.meta.env.VITE_API}/gamescategory`
+    const url=`${uri}/gamescategory`
     const respuesta = await fetch(url).catch((error)=>`Error al realizar el fectha de la funcion gamesCategory: ${error}`);
     const datos = await respuesta.json().catch((error)=>`Error al realizar el .json() de la respuesta en la funcion gamesCagetory: ${error}`);
     return datos.data
 }
 
 export const gameId=async(id)=>{
-    const url=`${import.meta.env.VITE_API}/games/${id}`
+    const url=`${uri}/games/${id}`
     const response = await fetch(url);
     const data = await response.json();
     if(data.error) return data
@@ -43,7 +44,7 @@ export const gamesWithFilter=async (nombre)=>{
         name:nombre
     };
 
-    const url = `${import.meta.env.VITE_API}/gamesfilter/`;
+    const url = `${uri}/gamesfilter/`;
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -56,7 +57,7 @@ export const gamesWithFilter=async (nombre)=>{
   }
 
   export const gamesCantidad=async (datos)=>{
-    const url = `${import.meta.env.VITE_API}/gamescountgames/`;
+    const url = `${uri}/gamescountgames/`;
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -83,7 +84,7 @@ export const gamesAdd=async(token, datos)=>{
         price: datos.price,
         stock: datos.stock
     };
-    const url=`${import.meta.env.VITE_API}/creargames`
+    const url=`${uri}/creargames`
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -117,7 +118,7 @@ export const gamesPut=async(token, datos)=>{
         stock: datos.stock
     };
 
-    const url=`${import.meta.env.VITE_API}/actualizargames`
+    const url=`${uri}/actualizargames`
     const response = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -140,7 +141,7 @@ export const gamesDelete=async(token, id)=>{
     const datosAux = {
         id:id,
     };
-    const url=`${import.meta.env.VITE_API}/borrargames`
+    const url=`${uri}/borrargames`
     const response = await fetch(url, {
         method: 'DELETE',
         headers: {
@@ -162,7 +163,7 @@ export const loggear = async (email, password) => {
         email,
         password,
     };
-    const url=`${import.meta.env.VITE_API}/login`
+    const url=`${uri}/login`
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -176,7 +177,7 @@ export const loggear = async (email, password) => {
 }
 
 export const userWithId=async(id, token)=>{
-    const url=`${import.meta.env.VITE_API}/user/${id}`
+    const url=`${uri}/user/${id}`
     const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -190,7 +191,7 @@ export const userWithId=async(id, token)=>{
 }
 
 export const borrarUsuario=async(id, token)=>{
-    const url=`${import.meta.env.VITE_API}/borrarusuario/${id}`
+    const url=`${uri}/borrarusuario/${id}`
     const response = await fetch(url, {
         method: 'DELETE',
         headers: {
@@ -207,7 +208,7 @@ export const userWithFilter=async(filter, token)=>{
     const dates={
         name:filter
     };
-    const url=`${import.meta.env.VITE_API}/usersfilter`
+    const url=`${uri}/usersfilter`
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -229,7 +230,7 @@ export const crearusuario = async (nombre, email, password, direccion) => {
         password,
         direccion
     };
-    const url=`${import.meta.env.VITE_API}/crearusuario`
+    const url=`${uri}/crearusuario`
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -255,7 +256,7 @@ export const modificarusuario = async (id,nombre, email, password, direccion, to
         direccion,
         role
     };
-    const url=`${import.meta.env.VITE_API}/actualizarusuario`
+    const url=`${uri}/actualizarusuario`
     const response = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -277,7 +278,7 @@ export const tokenUser = async (token) => {
     const datos = {
         token,
     };
-    const url=`${import.meta.env.VITE_API}/validtoken`
+    const url=`${uri}/validtoken`
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -296,7 +297,7 @@ export const historyOrders = async (token, id) => {
     const datos = {
         id,
     };
-    const url=`${import.meta.env.VITE_API}/orders`
+    const url=`${uri}/orders`
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -314,7 +315,7 @@ export const modificarPedido=async(pedido, token)=>{
     const datos = {
         idPedido:pedido,
     };
-    const url=`${import.meta.env.VITE_API}/modificarpedido`
+    const url=`${uri}/modificarpedido`
     const response = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -347,7 +348,7 @@ export const crearPedido= async (id, listaJuegos, address,token, precioTotal ) =
         address: address,
         totalPrice: precioTotal,
     };
-    const url=`${import.meta.env.VITE_API}/crearorder`
+    const url=`${uri}/crearorder`
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -375,7 +376,7 @@ export const sendEmail=async (data)=>{
         message:data.message
 
     };
-    const url=`${import.meta.env.VITE_API}/contacto`
+    const url=`${uri}/contacto`
     const response = await fetch(url, {
         method: 'POST',
         headers: {
