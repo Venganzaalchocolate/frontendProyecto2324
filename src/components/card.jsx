@@ -12,7 +12,7 @@ const Card=({juego})=>{
                 <picture>
                     <source srcSet={`/img/desktop/${juego.image}.jpg`} media="(min-width: 1200px)" />
                     <source srcSet={`/img/tablet/${juego.image}.jpg`} media="(min-width: 800px)" />
-                    <img src={`/image/phone/${juego.image}.jpg`} alt={`${juego.name}`}/>
+                    <img src={`/img/phone/${juego.image}.jpg`} alt={`${juego.name}`}/>
                 </picture>
                 <div className={styles.cajaPropiedades}  >
                     <h2 className={styles.nombre}>{juego.name}</h2>

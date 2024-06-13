@@ -25,13 +25,20 @@ const Filters=({pasarFiltros, cambiarLimit, filtros})=>{
         if(!isNaN(valor) && parseFloat(valor)>=0){
             let priceAux = [...precio];
             (tipo=="rangoMin") 
-                ? priceAux=[parseFloat(valor),(parseFloat(valor)>priceAux[1])?parseFloat(valor):priceAux[1]]
-                :(parseFloat(valor)<priceAux[0])?priceAux=[0,parseFloat(valor)]:priceAux[1]=parseFloat(valor)
+                ? priceAux=[parseFloat(valor),priceAux[1]]
+                : priceAux=[priceAux[0], parseFloat(valor)]
+            setPrecio(priceAux)
+        } else {
+            let priceAux = [...precio];
+            (tipo=="rangoMin") 
+                ? priceAux=[0,priceAux[1]]
+                : priceAux=[priceAux[0], 0]
             setPrecio(priceAux)
         }
     }
 
     const addFilter=()=>{
+        
         const arrayFiltros=[]
         const paresClaveValor = Object.entries(inputsCheket);
         paresClaveValor.map(([clave, valor])=>{
@@ -39,8 +46,8 @@ const Filters=({pasarFiltros, cambiarLimit, filtros})=>{
         })
         const filtroAux={
             categorias:arrayFiltros,
-            precioMinimo:precio[0],
-            precioMaximo:precio[1]
+            precioMinimo:(precio[0]==undefined)?0:precio[0],
+            precioMaximo:(precio[1]==undefined)?999999999:precio[1]
         }
         cambiarLimit([0,10])
         pasarFiltros(filtroAux)
@@ -71,15 +78,11 @@ const Filters=({pasarFiltros, cambiarLimit, filtros})=>{
                     listaInputs[x]=true
                 })
             }
-            
           }
-          
           setInputsChecked(listaInputs)
         };
-        
         cargarDatos();
       }, []);
-
       
     return(
         <>

@@ -1,4 +1,4 @@
-.header{
+.header {
     background-color: var(--color-lila);
     display: flex;
     flex-wrap: wrap;
@@ -9,13 +9,13 @@
     top: 0;
 }
 
-.header>img{
+.header>img {
     height: auto;
     object-fit: contain;
     max-width: 15rem;
 }
 
-.header svg{
+.header svg {
     width: 2rem;
     height: 100%;
 }
@@ -24,19 +24,23 @@
     color: var(--color-lila);
     font-weight: bold;
     position: absolute;
-    top: 33px;
+    top: 28px;
     left: 14px;
     font-size: 8pt;
 }
 
-.contenedorLogo{
+.contenedorLogo {
     flex: 1;
     display: flex;
     padding: 1rem 0;
     padding-left: 2rem;
 }
 
-.contenedorIconos{
+.contenedorLogo img {
+    width: 10rem;
+}
+
+.contenedorIconos {
     display: flex;
     color: var(--color-naranja);
     gap: 0.5rem;
@@ -45,12 +49,13 @@
     position: relative;
 }
 
-.contenedorIconos>a>svg{
+.contenedorIconos>a>svg {
     color: var(--color-naranja);
 }
 
 
-.listaCarrito, .menuUsuario{
+.listaCarrito,
+.menuUsuario {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -61,11 +66,12 @@
     padding: 1rem;
     gap: 0.5rem;
 }
-.listaCarrito>:nth-child(1){
+
+.listaCarrito>:nth-child(1) {
     align-self: end;
 }
 
-.listaCarrito>:nth-child(2)>li{
+.listaCarrito>:nth-child(2)>li {
     color: var(--color-naranja);
     font-weight: bold;
     font-family: 'Courier';
@@ -73,7 +79,7 @@
 
 
 
-.listaCarrito>ul{
+.listaCarrito>ul {
     flex: 1 100%;
     display: flex;
     border-top: 1px solid var(--color-naranja);
@@ -81,7 +87,7 @@
     font-size: 10pt;
 }
 
-.listaCarrito>ul>li{
+.listaCarrito>ul>li {
     flex: 3rem 0;
     display: flex;
     justify-content: end;
@@ -89,25 +95,25 @@
     color: white;
 }
 
-.listaCarrito>ul>li>label{
+.listaCarrito>ul>li>label {
     color: var(--color-naranja);
 }
 
-.listaCarrito>ul>:nth-child(1){
+.listaCarrito>ul>:nth-child(1) {
     flex: 1;
 }
 
-.listaCarrito>ul>li>svg{
+.listaCarrito>ul>li>svg {
     width: 1rem;
 }
 
-.listaCarrito>p{
+.listaCarrito>p {
     text-align: end;
     font-weight: bold;
     font-family: 'Courier';
 }
 
-.contenedorEnvioSociales{
+.contenedorEnvioSociales {
     display: flex;
     flex: 1 100%;
     background-color: black;
@@ -120,31 +126,31 @@
     align-items: center;
 }
 
-.contenedorEnvioSociales p{
+.contenedorEnvioSociales p {
     font-family: 'Courier';
 }
 
-.contenedorEnvioSociales>div{
+.contenedorEnvioSociales>div {
     display: flex;
 }
 
-.contenedorEnvioSociales>div>svg{
+.contenedorEnvioSociales>div>svg {
     width: 1.3rem;
     margin-left: 0.5rem;
 }
 
-.menuUsuario>:nth-child(1){
+.menuUsuario>:nth-child(1) {
     align-self: end;
 }
 
-.menuUsuario>ul{
+.menuUsuario>ul {
     flex: 1 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.menuUsuario>ul>a{
+.menuUsuario>ul>a {
     flex: 1 100%;
     display: flex;
     border-top: 1px solid var(--color-naranja);
@@ -155,6 +161,17 @@
     justify-content: center;
 }
 
-.menuUsuario>ul>a:hover{
+.menuUsuario>ul>a:hover {
     background-color: var(--color-naranja);
+}
+
+
+@media screen and (min-width: 700px) {
+    .header span {
+        top: 33px;
+    }
+
+    .contenedorLogo img {
+        width: auto;
+    }
 }

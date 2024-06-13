@@ -9,16 +9,16 @@
     height: fit-content;
     justify-self: center;
     padding: 2rem;
-    margin: 1rem;
-    min-width: 250px;
+    margin: 0;
+    min-width: 200px;
     width: auto;
 }
 
 .cajaForm>h2{
-    margin-top: -90px;
+    margin-top: -80px;
     text-align: center;
     color: var(--color-naranja);
-    font-size: 30pt;
+    font-size: 20pt;
     margin-bottom: 20px;
 }
 
@@ -28,8 +28,6 @@
     color: var(--color-lila);
     font-weight: bold;
 }
-
-
 
 .cajaInputs{
     display: flex;
@@ -69,8 +67,14 @@
 
 @media screen and (min-width: 700px) {
     .cajaForm{
-        margin: 0;
+        margin: 1rem;
         min-width: 350px;
         width: 500px;
+    }
+    
+    .cajaForm>h2{
+        margin-top: -90px;
+        font-size: 30pt;
+    
     }
   }
